@@ -183,23 +183,23 @@ namespace ft
         public :
             typedef T1 t1;
             typedef T2 t2;
-            t1 arg1;
-            t2 arg2;
+            t1 tt1;
+            t2 tt2;
 
-            pair(): arg1(), arg2(){}
+            pair(): tt1(), tt2(){}
 
             template<class U, class V>
-            pair (const pair<U, V>& pr): arg1(pr.arg1), arg2(pr.arg2){}
+            pair (const pair<U, V>& pr): tt1(pr.tt1), tt2(pr.tt2){}
 
 
-            pair (const t1& a, const t2& b): arg1(a), arg2(b){}
+            pair (const t1& a, const t2& b): tt1(a), tt2(b){}
             
             pair& operator= (const pair& pr)
             {
                 if (*this == pr)
                     return (*this);
-                this->arg1 = pr.arg1;
-                this->arg2 = pr.arg2;
+                this->tt1 = pr.tt1;
+                this->tt2 = pr.tt2;
                 return (*this);
             }
     };
@@ -209,7 +209,7 @@ namespace ft
     template <class T1, class T2>
     bool operator== (const ft::pair<T1,T2>& firstArg, const ft::pair<T1,T2>& secondArg)
     {
-        return (firstArg.arg1 == secondArg.arg1 && firstArg.arg2 == secondArg.arg2);
+        return (firstArg.lhs == secondArg.lhs && firstArg.rhs == secondArg.rhs);
     }
 
     template <class T1, class T2>
@@ -221,16 +221,16 @@ namespace ft
     template <class T1, class T2>
     bool operator< (const ft::pair<T1,T2>& firstArg, const ft::pair<T1,T2>& secondArg)
     {
-        return (firstArg.arg1 < secondArg.arg1 || (!(firstArg.arg1 < secondArg.arg1) &&\
-        firstArg.arg1 < secondArg.arg2));
+        return (firstArg.lhs < secondArg.lhs || (!(firstArg.lhs < secondArg.lhs) &&\
+        firstArg.lhs < secondArg.rhs));
     }
 
     template <class T1, class T2>
     bool operator> (const ft::pair<T1,T2>& firstArg, const ft::pair<T1,T2>& secondArg)
     {
         return (firstArg > secondArg); 
-        // (firstArg.arg1 < secondArg.arg1 || (!(firstArg.arg1 < secondArg.arg1) &&\
-        // firstArg.arg1 < secondArg.arg2));
+        // (firstArg.lhs < secondArg.lhs || (!(firstArg.lhs < secondArg.lhs) &&\
+        // firstArg.lhs < secondArg.rhs));
     }
 
     template <class T1, class T2>
@@ -478,75 +478,75 @@ namespace ft
 
     //==================Start iterator_overloads==================
     template <class Iterator>
-    bool operator== (const reverse_iterator<Iterator> &arg1, const reverse_iterator<Iterator> &arg2)
+    bool operator== (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
     {
-        return (arg1.base() == arg2.base());
+        return (lhs.base() == rhs.base());
     }
 
     template <class Iterator>
-    bool operator!= (const reverse_iterator<Iterator> &arg1, const reverse_iterator<Iterator> &arg2)
+    bool operator!= (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
     {
-        return (arg1.base() == arg2.base());
+        return (lhs.base() == rhs.base());
     }
 
     template <class Iterator_L, class Iterator_R>
-    bool operator== (const reverse_iterator<Iterator_L> &arg1, const reverse_iterator<Iterator_R> &arg2)
+    bool operator== (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
     {
-        return (arg1.base() == arg2.base());
+        return (lhs.base() == rhs.base());
     }
 
     template <class Iterator_L, class Iterator_R>
-    bool operator!= (const reverse_iterator<Iterator_L> &arg1, const reverse_iterator<Iterator_R> &arg2)
+    bool operator!= (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
     {
-        return (arg1.base() != arg2.base());
+        return (lhs.base() != rhs.base());
     }
 
     template <class Iterator>
-    bool operator< (const reverse_iterator<Iterator> &arg1, const reverse_iterator<Iterator> &arg2)
+    bool operator< (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
     {
-        return (arg2.base() < arg1.base());
+        return (rhs.base() < lhs.base());
     }
 
     template <class Iterator>
-    bool operator<= (const reverse_iterator<Iterator> &arg1, const reverse_iterator<Iterator> &arg2)
+    bool operator<= (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
     {
-        return (arg2.base() <= arg1.base());
+        return (rhs.base() <= lhs.base());
     }
 
     template <class Iterator_L, class Iterator_R>
-    bool operator< (const reverse_iterator<Iterator_L> &arg1, const reverse_iterator<Iterator_R> &arg2)
+    bool operator< (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
     {
-        return (arg1.base() > arg2.base());
+        return (lhs.base() > rhs.base());
     }
 
     template <class Iterator_L, class Iterator_R>
-    bool operator<= (const reverse_iterator<Iterator_L> &arg1, const reverse_iterator<Iterator_R> &arg2)
+    bool operator<= (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
     {
-        return (arg1.base() >= arg2.base());
+        return (lhs.base() >= rhs.base());
     }
 
     template <class Iterator>
-    bool operator> (const reverse_iterator<Iterator> &arg1, const reverse_iterator<Iterator> &arg2) 
+    bool operator> (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs) 
     {
-        return (arg1.base() < arg2.bash());
+        return (lhs.base() < rhs.bash());
     }
 
     template <class Iterator>
-    bool operator>= (const reverse_iterator<Iterator> &arg1, const reverse_iterator<Iterator> &arg2) 
+    bool operator>= (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs) 
     {
-        return (arg1.base() <= arg2.bash());
+        return (lhs.base() <= rhs.bash());
     }
 
     template <class Iterator_L, class Iterator_R>
-    bool operator> (const reverse_iterator<Iterator_L> &arg1, const reverse_iterator<Iterator_R> &arg2)
+    bool operator> (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
     {
-        return (arg1.base() < arg2.base());
+        return (lhs.base() < rhs.base());
     }
 
     template <class Iterator_L, class Iterator_R>
-    bool operator>= (const reverse_iterator<Iterator_L> &arg1, const reverse_iterator<Iterator_R> &arg2)
+    bool operator>= (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
     {
-        return (arg1.base() <= arg2.base());
+        return (lhs.base() <= rhs.base());
     }
 
     template <class Iterator>
@@ -557,15 +557,15 @@ namespace ft
     }
 
     template <class Iterator>
-    typename reverse_iterator<Iterator>::difference_type operator- (const reverse_iterator<Iterator> &arg1, const reverse_iterator<Iterator> &arg2)
+    typename reverse_iterator<Iterator>::difference_type operator- (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
     {
-        return (arg1.base() - arg2.base());
+        return (lhs.base() - rhs.base());
     }
 
     template <class Iterator_L, class Iterator_R>
-    bool operator- (const reverse_iterator<Iterator_L> &arg1, const reverse_iterator<Iterator_R> &arg2)
+    bool operator- (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
     {
-        return (arg1.base() - arg2.base());
+        return (lhs.base() - rhs.base());
     }
     //==================End iterator_overloads==================
 
