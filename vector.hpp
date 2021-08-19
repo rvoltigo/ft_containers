@@ -426,6 +426,60 @@ namespace ft
 			}
 
     };
+
+    template <class T, class Alloc>
+    bool operator== (const ft::vector<T, Alloc>& lhs, const ft::vector<T, Alloc>& rhs)
+    {
+        if (lhs.size() != rhs.size())
+            return (false);
+        typename ft::vector<T>::const_iterator leftIter = lhs.begin();
+        typename ft::vector<T>::const_iterator rightIter = rhs.begin();
+
+        while (leftIter != lhs.end())
+        {
+            if (*leftIter != *rightIter || rightIter == rhs.end())
+                return (false);
+            leftIter++;
+            rightIter++;
+        }
+        return (true);
+    }
+
+    template <class T, class Alloc>
+    bool operator!= (const ft::vector<T, Alloc>& lhs, const ft::vector<T, Alloc>& rhs)
+    {
+        return (!(lhs == rhs));
+    }
+
+    template <class T, class Alloc>
+    bool operator< (const ft::vector<T, Alloc>& lhs, const ft::vector<T, Alloc>& rhs)
+    {
+        return (ft::lexicographical_compare(lhs.begin(), lhs.endif(), rhs.begin(), rhs.end()));
+    }
+
+    template <class T, class Alloc>
+    bool operator<= (const ft::vector<T, Alloc>& lhs, const ft::vector<T, Alloc>& rhs)
+    {
+        return (!(rhs < lhs));
+    }
+
+    template <class T, class Alloc>
+    bool operator> (const ft::vector<T, Alloc>& lhs, const ft::vector<T, Alloc>& rhs)
+    {
+        return (rhs < lhs);
+    }
+
+    template <class T, class Alloc>
+    bool operator>= (const ft::vector<T, Alloc>& lhs, const ft::vector<T, Alloc>& rhs)
+    {
+        return (!(lhs < rhs));
+    }
+
+    template <class T, class Alloc>
+    void swap (ft::vector<T, Alloc>& x, ft::vector<T, Alloc>& y)
+    {
+        x.swap(y);
+    }
 }
 
 #endif
