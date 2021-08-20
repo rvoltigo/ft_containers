@@ -8,7 +8,8 @@
 # include <iostream>
 # include "empty_classes.hpp"
 # include "iterator_traits.hpp"
-# include "vector_reverse_iterator.hpp"
+# include "iterator.hpp"
+# include "pair.hpp"
 
 
 //================Start u_nullptr================
@@ -64,10 +65,6 @@ namespace ft
     };
     //================End binary_function================
 
-    // class random_access_iterator_tag {};
-
-    
-
     //==================Start lexicographical_compare==================
     template <class IteratorInputFirst, class IteratorInputSecond>
     bool lexicographical_compare(IteratorInputFirst beginFirst, IteratorInputFirst endFirst,
@@ -103,6 +100,7 @@ namespace ft
     }
     //==================End lexicographical_compare==================
 
+    //st map
     //==================Start BST_Node==================
     template <typename T>
     struct BST_Node
@@ -178,96 +176,7 @@ namespace ft
             {}
     };
     //===================End Doubly_Linked_Node===================
-
-    //===================Start pair===================
-    template <class T1, class T2>
-    struct pair
-    {
-        public :
-            typedef T1 t1;
-            typedef T2 t2;
-            t1 first;
-            t2 second;
-
-            pair(): first(), second(){}
-
-            template<class U, class V>
-            pair (const pair<U, V>& pr): first(pr.first), second(pr.second){}
-
-
-            pair (const t1& a, const t2& b): first(a), second(b){}
-            
-            pair& operator= (const pair& pr)
-            {
-                if (*this == pr)
-                    return (*this);
-                this->first = pr.first;
-                this->second = pr.second;
-                return (*this);
-            }
-    };
-    //===================End pair===================
-
-    ////===================Start overloads===================
-    template <class T1, class T2>
-    bool operator== (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)
-    {
-        return (lhs.first == rhs.first && lhs.second == rhs.second);
-    }
-
-    template <class T1, class T2>
-    bool operator!= (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)
-    {
-        return (!(lhs == rhs));
-    }
-
-    template <class T1, class T2>
-    bool operator< (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)
-    {
-        return (lhs.first < rhs.first || (!(rhs.first < lhs.first) &&\
-        lhs.second < rhs.second));
-        
-    }
-
-    template <class T1, class T2>
-    bool operator> (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)
-    {
-        return (rhs < lhs); 
-    }
-
-    template <class T1, class T2>
-    bool operator<= (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)
-    {
-        return (!(rhs < lhs));
-    }
-
-    template <class T1, class T2>
-    bool operator>= (const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs)
-    {
-        return (!(lhs < rhs));
-    }
-
-    template <class T1, class T2>
-    ft::pair<T1, T2> make_pair(T1 x, T2 y)
-    {
-        return (ft::pair<T1, T2>(x, y));
-    }
-    
-    template<bool Cond, class T = void> struct enable_if 
-    {};
-
-    template<class T> struct enable_if<true, T> 
-    { 
-        typedef T type; 
-    };
-
-    template <bool is_integral, typename T>
-    struct is_integral_res 
-    {
-        typedef T type;
-        static const bool value = is_integral;
-    };
-    ////===================End overloads===================
+    //end map
 
     //=================Start Types=================
 
@@ -315,21 +224,6 @@ namespace ft
 
     //==================End Types==================
 
-
-    //================Start Iterator================
-    template <class Category, class T, class Distance = ptrdiff_t,
-        class Pointer = T*, class Reference = T&>
-    class iterator
-    {
-        public:
-            typedef T           value_type;
-            typedef Distance    difference_type;
-            typedef Pointer     pointer;
-            typedef Reference   reference;
-            typedef Category    iterator_category;
-    };
-    //================End Iterator================
-
     //================Start bidirectional_iterator================
     template <class T>
     class bidirectional_iterator : ft::iterator<ft::bidirectional_iterator_tag, T>
@@ -344,99 +238,6 @@ namespace ft
             pointer _elem;
     };
     //================End bidirectional_iterator================
-
-    //==================Start iterator_overloads==================
-    template <class Iterator>
-    bool operator== (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
-    {
-        return (lhs.base() == rhs.base());
-    }
-
-    template <class Iterator>
-    bool operator!= (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
-    {
-        return (lhs.base() == rhs.base());
-    }
-
-    template <class Iterator_L, class Iterator_R>
-    bool operator== (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
-    {
-        return (lhs.base() == rhs.base());
-    }
-
-    template <class Iterator_L, class Iterator_R>
-    bool operator!= (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
-    {
-        return (lhs.base() != rhs.base());
-    }
-
-    template <class Iterator>
-    bool operator< (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
-    {
-        return (rhs.base() < lhs.base());
-    }
-
-    template <class Iterator>
-    bool operator<= (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
-    {
-        return (rhs.base() <= lhs.base());
-    }
-
-    template <class Iterator_L, class Iterator_R>
-    bool operator< (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
-    {
-        return (lhs.base() > rhs.base());
-    }
-
-    template <class Iterator_L, class Iterator_R>
-    bool operator<= (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
-    {
-        return (lhs.base() >= rhs.base());
-    }
-
-    template <class Iterator>
-    bool operator> (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs) 
-    {
-        return (lhs.base() < rhs.bash());
-    }
-
-    template <class Iterator>
-    bool operator>= (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs) 
-    {
-        return (lhs.base() <= rhs.bash());
-    }
-
-    template <class Iterator_L, class Iterator_R>
-    bool operator> (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
-    {
-        return (lhs.base() < rhs.base());
-    }
-
-    template <class Iterator_L, class Iterator_R>
-    bool operator>= (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
-    {
-        return (lhs.base() <= rhs.base());
-    }
-
-    template <class Iterator>
-    reverse_iterator<Iterator> operator+ (typename reverse_iterator<Iterator>::difference_type n,
-            const reverse_iterator<Iterator> &reverse_it)
-    {
-        return (reverse_it + n);
-    }
-
-    template <class Iterator>
-    typename reverse_iterator<Iterator>::difference_type operator- (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs)
-    {
-        return (lhs.base() - rhs.base());
-    }
-
-    template <class Iterator_L, class Iterator_R>
-    bool operator- (const reverse_iterator<Iterator_L> &lhs, const reverse_iterator<Iterator_R> &rhs)
-    {
-        return (lhs.base() - rhs.base());
-    }
-    //==================End iterator_overloads==================
 
     template <bool is_valid, typename T>
     struct valid_iterator_tag_res 

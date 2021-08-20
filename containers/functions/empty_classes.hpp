@@ -1,7 +1,6 @@
 #ifndef EMPTY_CLASSES_HPP
 #define EMPTY_CLASSES_HPP
 
-
 namespace ft
 {
     class random_access_iterator_tag {};
