@@ -6,6 +6,9 @@
 # include <sstream>
 # include <typeinfo>
 # include <iostream>
+# include "empty_classes.hpp"
+# include "iterator_traits.hpp"
+# include "vector_reverse_iterator.hpp"
 
 
 //================Start u_nullptr================
@@ -312,55 +315,6 @@ namespace ft
 
     //==================End Types==================
 
-    class random_access_iterator_tag {};
-    class bidirectional_iterator_tag {};
-    class forward_iterator_tag {};
-    class input_iterator_tag {};
-    class output_iterator_tag {};
-
-    //================Start iterator_traits================
-    template <class Iterator> struct iterator_traits
-    {
-        typedef typename Iterator::difference_type       difference_type;
-        typedef typename Iterator::value_type            value_type;
-        typedef typename Iterator::pointer               pointer;
-        typedef typename Iterator::reference             reference;
-        typedef typename Iterator::iterator_category     iterator_category;
-    };
-    
-    template <class T> struct iterator_traits<T*>
-    {
-        typedef ptrdiff_t                       difference_type;
-        typedef T                               value_type;
-        typedef T*                              pointer;
-        typedef T&                              reference;
-        typedef ft::random_access_iterator_tag  iterator_category;
-    };
-
-    template <class T> class iterator_traits<const T*>
-    {
-        typedef         ptrdiff_t                       difference_type;
-        typedef         T                               value_type;
-        typedef const   T*                              pointer;
-        typedef const   T&                              reference;
-        typedef         ft::random_access_iterator_tag  iterator_category;
-    };
-    //================End iterator_traits================
-
-    //================Start distance================
-    template <class InputIterator>
-    typename ft::iterator_traits<InputIterator>::difference_type 
-        distance(InputIterator begin, InputIterator end)
-    {
-        typename ft::iterator_traits<InputIterator>::difference_type dfrType = 0;
-        while(begin != end)
-        {
-            begin++;
-            dfrType++;
-        }
-        return (dfrType);
-    }
-    //================End distance================
 
     //================Start Iterator================
     template <class Category, class T, class Distance = ptrdiff_t,
@@ -390,90 +344,6 @@ namespace ft
             pointer _elem;
     };
     //================End bidirectional_iterator================
-    
-    //================Start reverse_iterator================
-    template <class Iterator>
-    class reverse_iterator
-    {
-
-        public:
-            typedef             Iterator                                           iterator_type;
-            typedef typename    ft::iterator_traits<Iterator>::iterator_category   iterator_category;
-            typedef typename    ft::iterator_traits<Iterator>::value_type          value_type;
-            typedef typename    ft::iterator_traits<Iterator>::difference_type     difference_type;
-            typedef typename    ft::iterator_traits<Iterator>::pointer             pointer;
-            typedef typename    ft::iterator_traits<Iterator>::reference           reference;
-
-            reverse_iterator() : _elem() {}
-
-            explicit reverse_iterator(iterator_type iterator) : _elem(iterator) {}
-
-            template <class Iter>
-            reverse_iterator(const reverse_iterator<Iter>& reverse_it): _elem(reverse_it.base()) {}
-
-            virtual ~reverse_iterator() {}
-
-            iterator_type base() const
-            {
-                return (_elem);
-            }
-
-            reference operator*() const
-            {
-                iterator_type result = _elem;
-                return (*(--result));
-            }
-
-            reverse_iterator operator+ (difference_type n) const
-            {
-                return (reverse_iterator(_elem - n));
-            }
-
-            reverse_iterator operator++(int)
-            {
-                reverse_iterator result = *this;
-                ++(*this);
-                return (result);
-            }
-
-            reverse_iterator &operator+= (difference_type n)
-            {
-                _elem -= n;
-                return (*this);
-            }
-
-            reverse_iterator operator- (difference_type n) const
-            {
-                return (reverse_iterator(_elem + n));
-            }
-
-            reverse_iterator operator-- (int)
-            {
-                reverse_iterator result = *this;
-                --(*this);
-                return (result);
-            }
-
-            reverse_iterator &operator-= (difference_type n)
-            {
-                _elem += n;
-                return (*this);
-            }
-
-            pointer operator->() const
-            {
-                return &(operator*());
-            }
-
-            reference operator[] (difference_type n) const
-            {
-                return (this->base()[-n - 1]);
-            }
-
-        private:
-            iterator_type   _elem;
-    };
-    //================End reverse_iterator================
 
     //==================Start iterator_overloads==================
     template <class Iterator>

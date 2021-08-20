@@ -5,8 +5,9 @@
 # include <algorithm>
 # include <cstddef>
 # include <tgmath.h>
-#include "other.hpp"
-#include "random_iterator.hpp"
+
+#include "functions/other.hpp"
+#include "functions/random_iterator.hpp"
 
 using namespace std;
 
