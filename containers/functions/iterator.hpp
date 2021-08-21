@@ -60,7 +60,7 @@ namespace ft
             reverse_iterator operator++(int)
             {
                 reverse_iterator result = *this;
-                ++(*this);
+                (*this)++;
                 return (result);
             }
 
@@ -78,7 +78,7 @@ namespace ft
             reverse_iterator operator-- (int)
             {
                 reverse_iterator result = *this;
-                --(*this);
+                (*this)--;
                 return (result);
             }
 
@@ -154,13 +154,13 @@ namespace ft
     template <class Iterator>
     bool operator> (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs) 
     {
-        return (lhs.base() < rhs.bash());
+        return (lhs.base() < rhs.base());
     }
 
     template <class Iterator>
     bool operator>= (const reverse_iterator<Iterator> &lhs, const reverse_iterator<Iterator> &rhs) 
     {
-        return (lhs.base() <= rhs.bash());
+        return (lhs.base() <= rhs.base());
     }
 
     template <class Iterator_L, class Iterator_R>

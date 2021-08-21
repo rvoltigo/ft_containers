@@ -46,7 +46,7 @@ namespace ft
                 return (*_value);
             }
 
-            reference operator->()
+            pointer operator->()
             {
                 return &(this->operator*());
             }

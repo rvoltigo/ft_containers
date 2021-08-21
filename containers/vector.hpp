@@ -43,13 +43,36 @@ namespace ft
 
 			explicit vector(size_t n, const value_type &var = value_type(),
 					const allocator_type &allocate = allocator_type()):
-				_alloc(allocate)
+				_alloc(allocate),
+				_first(u_nullptr),
+				_last(u_nullptr),
+				_last_capacity(u_nullptr)
 			{
 				_first = _alloc.allocate(n);
 				_last_capacity = _first + n;
 				_last = _first;
 				while (n--)
 					_alloc.construct(_last++, var);
+			}
+
+			template <class InputIterator>
+			vector (InputIterator first, InputIterator last,
+					const allocator_type& alloc = allocator_type(),
+					typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr): _alloc(alloc)
+			{
+				bool is_valid;
+				if (!(is_valid = ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::value))
+					throw (ft::InvalidIteratorException<typename ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::type>());
+				
+				difference_type n = ft::distance(first, last);
+				_first = _alloc.allocate( n );
+				_last_capacity = _first + n;
+				_last = _first;
+				while (n--)
+				{
+					_alloc.construct(_last, *first++);
+					_last++;
+				}
 			}
 
 			vector (const vector& x): //Constructs a container with a copy of each of the elements in x, in the same order.
@@ -130,7 +153,7 @@ namespace ft
 
 			//=============#3 START CAPACITY #3=============
 			
-			size_type size() const
+			size_type size(void) const
 			{
 				return (this->_last - this->_first);
 			}
@@ -337,7 +360,7 @@ namespace ft
 				{
 					for (int i = 0; _last - &(*position) - 1; i++)
 					{
-						_alloc.construct(&(*position) + i, (&(*position) + i + 1));
+						_alloc.construct(&(*position) + i, *(&(*position) + i + 1));
 						_alloc.destroy(&(*position) + i + 1);
 					}
 				}
@@ -345,18 +368,18 @@ namespace ft
 				return (iterator(tmp_pos));
 			}
 
-			iterator erase(iterator first, iterator last)
+			iterator erase (iterator first, iterator last)
 			{
-				pointer tmp_pos = &(*first);
+				pointer p_first = &(*first);
 				for (; &(*first) != &(*last); first++)
 					_alloc.destroy(&(*first));
 				for (int i = 0; i < _last - &(*last); i++)
 				{
-					_alloc.construct(tmp_pos + i, *(&(*last) + i));
+					_alloc.construct(p_first + i, *(&(*last) + i));
 					_alloc.destroy(&(*last) + i);
 				}
-				_last -= (&(*last) - tmp_pos);
-				return (iterator(tmp_pos));
+				_last -= (&(*last) - p_first);
+				return (iterator(p_first));
 			}
 
 			void clear()
@@ -609,7 +632,7 @@ namespace ft
 	template <class T, class Alloc>
 	bool operator< (const ft::vector<T, Alloc>& lhs, const ft::vector<T, Alloc>& rhs)
 	{
-		return (ft::lexicographical_compare(lhs.begin(), lhs.endif(), rhs.begin(), rhs.end()));
+		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 	}
 
 	template <class T, class Alloc>
