@@ -1,7 +1,7 @@
 #ifndef RANDOM_ITERATOR_HPP
 #define RANDOM_ITERATOR_HPP
 
-#include "other.hpp"
+#include "functions.hpp"
 
 namespace ft
 {

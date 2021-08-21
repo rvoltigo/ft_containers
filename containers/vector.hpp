@@ -6,7 +6,7 @@
 # include <cstddef>
 # include <tgmath.h>
 
-#include "functions/other.hpp"
+#include "functions/functions.hpp"
 #include "functions/random_iterator.hpp"
 
 using namespace std;
@@ -49,7 +49,7 @@ namespace ft
 				_last_capacity = _first + n;
 				_last = _first;
 				while (n--)
-					_alloc.constructor(_last++, var);
+					_alloc.construct(_last++, var);
 			}
 
 			vector (const vector& x): //Constructs a container with a copy of each of the elements in x, in the same order.
@@ -185,7 +185,7 @@ namespace ft
 
 					while (prev_first != prev_last)
 					{
-						_alloc,construct(_last, *prev_first);
+						_alloc.construct(_last, *prev_first);
 						_last++;
 						prev_first++;
 					}
@@ -268,7 +268,7 @@ namespace ft
 					pointer new_last_capacity = new_first + dist;
 
 					for (; &(*first) != &(*last); first++, new_last++)
-						_alloc.constructor(new_last, *first);
+						_alloc.construct(new_last, *first);
 					
 					_alloc.deallocate(_first, this->capacity());
 
@@ -291,7 +291,7 @@ namespace ft
 					_last_capacity = _first + n;
 					while (n)
 					{
-						_alloc.constructor(_last++, val);
+						_alloc.construct(_last++, val);
 						n--;
 					}
 				}
@@ -299,7 +299,7 @@ namespace ft
 				{
 					while(n)
 					{
-						_alloc.constructor(_last++, val);
+						_alloc.construct(_last++, val);
 						n--;
 					}
 				}
@@ -316,7 +316,7 @@ namespace ft
 						next_capacity = 1;
 					this->reserve(next_capacity);
 				}
-				_alloc.constructor(_last, val);
+				_alloc.construct(_last, val);
 				_last++;
 			}
 
@@ -337,7 +337,7 @@ namespace ft
 				{
 					for (int i = 0; _last - &(*position) - 1; i++)
 					{
-						_alloc.constructor(&(*position) + i, (&(*position) + i + 1));
+						_alloc.construct(&(*position) + i, (&(*position) + i + 1));
 						_alloc.destroy(&(*position) + i + 1);
 					}
 				}
@@ -352,7 +352,7 @@ namespace ft
 					_alloc.destroy(&(*first));
 				for (int i = 0; i < _last - &(*last); i++)
 				{
-					_alloc.constructor(tmp_pos + i, *(&(*last) + i));
+					_alloc.construct(tmp_pos + i, *(&(*last) + i));
 					_alloc.destroy(&(*last) + i);
 				}
 				_last -= (&(*last) - tmp_pos);
