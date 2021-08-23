@@ -24,7 +24,9 @@ namespace ft
 					value_compare   (Compare c) : comp(c) {}
 				public:
 					bool operator() (const value_type& x, const value_type& y) const
-					{ return (comp(x.first, y.first)); }
+					{
+						return (comp(x.first, y.first));
+					}
 			};
 			typedef Alloc                                                                       allocator_type;
 			typedef typename allocator_type::reference                                          reference;
@@ -39,22 +41,16 @@ namespace ft
 			typedef size_t                                                                      size_type;
 
 			explicit map (const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type())
-			:
-				_alloc(alloc),
-				_comp(comp),
-				_bst()
-			{}
+				const allocator_type& alloc = allocator_type()): _alloc(alloc), _comp(comp), _bst()
+			{
+			}
 
 			template <class InputIterator>
 				map (InputIterator first, InputIterator last,
 					const key_compare& comp = key_compare(),
 					const allocator_type& alloc = allocator_type(),
 					typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
-			:	
-				_alloc(alloc),
-				_comp(comp),
-				_bst()
+			:	_alloc(alloc), _comp(comp), _bst()
 			{
 				bool is_valid;
 				if (!(is_valid = ft::is_input_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::value))
@@ -62,17 +58,15 @@ namespace ft
 				this->insert(first, last);
 			}
 
-			map(const map& x)
-			:
-				_alloc(x._alloc),
-				_comp(x._comp),
-				_bst()
+			map(const map& x): _alloc(x._alloc), _comp(x._comp), _bst()
 			{
 				this->insert(x.begin(), x.end());
 			}
 
 			~map()
-			{ this->clear(); }
+			{
+				this->clear();
+			}
 
 			map& operator= (const map& x)
 			{
@@ -83,53 +77,77 @@ namespace ft
 				return (*this);
 			}
 
-			iterator                begin()
-			{ return (iterator(_bst._last_node->left, _bst._last_node)); }
+			iterator	begin()
+			{
+				return (iterator(_bst._last_node->left, _bst._last_node));
+			}
 
-			const_iterator          begin() const
-			{ return (const_iterator(_bst._last_node->left, _bst._last_node)); }
+			const_iterator	begin() const
+			{
+				return (const_iterator(_bst._last_node->left, _bst._last_node));
+			}
 
-			iterator                end()
-			{ return (iterator(_bst._last_node, _bst._last_node)); }
+			iterator	end()
+			{
+				return (iterator(_bst._last_node, _bst._last_node));
+			}
 
-			const_iterator          end() const
-			{ return (const_iterator(_bst._last_node, _bst._last_node)); }
+			const_iterator	end() const
+			{
+				return (const_iterator(_bst._last_node, _bst._last_node));
+			}
 
-			reverse_iterator        rbegin()
-			{ return (reverse_iterator(this->end())); }
+			reverse_iterator	rbegin()
+			{
+				return (reverse_iterator(this->end()));
+			}
 
 			const_reverse_iterator rbegin() const
-			{ return (const_reverse_iterator(this->end())); }
-
-			reverse_iterator        rend()
-			{ return (reverse_iterator(this->begin())); }
-
-			const_reverse_iterator  rend() const
-			{ return (const_reverse_iterator(this->begin())); }
-
-			bool                    empty() const
-			{ return (_bst._last_node->parent == _bst._last_node); }
-
-			size_type               size() const
-			{ return (_bst._last_node->value.first); }
-
-			size_type               max_size() const
-			{ return (_bst.max_size()); }
-
-			mapped_type&            operator[] (const key_type& k)
 			{
-				iterator tmp = this->find(k);
+				return (const_reverse_iterator(this->end()));
+			}
 
-				if (tmp == this->end())
+			reverse_iterator	rend()
+			{
+				return (reverse_iterator(this->begin()));
+			}
+
+			const_reverse_iterator	rend() const
+			{
+				return (const_reverse_iterator(this->begin()));
+			}
+
+			bool	empty() const
+			{
+				return (_bst._last_node->parent == _bst._last_node);
+			}
+
+			size_type	size() const
+			{
+				return (_bst._last_node->value.first);
+			}
+
+			size_type	max_size() const
+			{
+				return (_bst.max_size());
+			}
+
+			mapped_type&	operator[] (const key_type& k)
+			{
+				iterator result = this->find(k);
+
+				if (result == this->end())
 					this->insert(ft::make_pair(k, mapped_type()));
-				tmp = this->find(k);
-				return ((*tmp).second);
+				result = this->find(k);
+				return ((*result).second);
 			} 
 
-			pair<iterator,bool>     insert (const value_type& val)
-			{ return (_bst.insertPair(val)); }
+			pair<iterator,bool>	insert (const value_type& val)
+			{
+				return (_bst.insertPair(val));
+			}
 
-			iterator                insert (iterator position, const value_type& val)
+			iterator	insert (iterator position, const value_type& val)
 			{
 				(void)position;
 				return (_bst.insertPair(val).first);
@@ -148,10 +166,12 @@ namespace ft
 					this->insert(*(first++));
 			}
 
-			void            erase (iterator position)
-			{ this->erase((*position).first); }
+			void	erase (iterator position)
+			{
+				this->erase((*position).first);
+			}
 
-			size_type       erase (const key_type& k)
+			size_type	erase (const key_type& k)
 			{
 				if (this->find(k) == this->end())
 					return (0);
@@ -159,31 +179,43 @@ namespace ft
 				return (1);
 			}
 
-			void            erase (iterator first, iterator last)
+			void	erase (iterator first, iterator last)
 			{
 				while (first != last)
 					this->erase((*(first++)).first);
 			}
 
-			void            swap (map& x)
-			{ _bst.swap(x._bst); }
+			void	swap (map& x)
+			{
+				_bst.swap(x._bst);
+			}
 
-			void            clear()
-			{ this->erase(this->begin(), this->end()); }
+			void	clear()
+			{
+				this->erase(this->begin(), this->end());
+			}
 
 			key_compare     key_comp() const
-			{ return (key_compare()); }
+			{
+				return (key_compare());
+			}
 
-			value_compare   value_comp() const
-			{ return (value_compare(key_compare())); }
+			value_compare	value_comp() const
+			{
+				return (value_compare(key_compare()));
+			}
 
-			iterator        find (const key_type& k)
-			{ return (iterator(_bst.searchByKey(ft::make_pair(k, mapped_type())), _bst._last_node)); }
+			iterator	find (const key_type& k)
+			{
+				return (iterator(_bst.searchByKey(ft::make_pair(k, mapped_type())), _bst._last_node));
+			}
 
-			const_iterator  find (const key_type& k) const
-			{ return (const_iterator(_bst.searchByKey(ft::make_pair(k, mapped_type())), _bst._last_node)); }
+			const_iterator	find (const key_type& k) const
+			{
+				return (const_iterator(_bst.searchByKey(ft::make_pair(k, mapped_type())), _bst._last_node));
+			}
 
-			size_type       count (const key_type& k) const
+			size_type	count (const key_type& k) const
 			{
 				const_iterator beg = this->begin();
 				const_iterator end = this->end();
@@ -193,7 +225,7 @@ namespace ft
 				return (0);
 			}
 
-			iterator        lower_bound (const key_type& k)
+			iterator	lower_bound (const key_type& k)
 			{
 				iterator beg = this->begin();
 				iterator end = this->end();
@@ -207,9 +239,11 @@ namespace ft
 			}
 
 			const_iterator  lower_bound (const key_type& k) const
-			{ return (const_iterator(this->lower_bound(k))); }
+			{
+				return (const_iterator(this->lower_bound(k)));
+			}
 
-			iterator        upper_bound (const key_type& k)
+			iterator	upper_bound (const key_type& k)
 			{
 				iterator beg = this->begin();
 				iterator end = this->end();
@@ -223,13 +257,19 @@ namespace ft
 			}
 
 			const_iterator upper_bound (const key_type& k) const
-			{ return (const_iterator(this->upper_bound(k))); }
+			{
+				return (const_iterator(this->upper_bound(k)));
+			}
 
 			ft::pair<const_iterator, const_iterator> equal_range (const key_type& k) const
-			{ return (ft::make_pair(this->lower_bound(k), this->upper_bound(k))); }
+			{
+				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
+			}
 
 			ft::pair<iterator, iterator> equal_range (const key_type& k)
-			{ return (ft::make_pair(this->lower_bound(k), this->upper_bound(k))); }
+			{
+				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
+			}
 
 		private:
 			allocator_type                          _alloc;

@@ -19,28 +19,34 @@ namespace ft
             BST_Node* right;
 
             BST_Node (): value(), parent(u_nullptr), left(u_nullptr), right(u_nullptr)
-            {}
+            {
+			}
 
             BST_Node (BST_Node* parent = u_nullptr, BST_Node* left = u_nullptr, BST_Node* right = u_nullptr):
                 value(),
                 parent(parent),
                 left(left),
                 right(right)
-            {}
+            {
+			}
 
             BST_Node (const value_type& val, BST_Node* parent = u_nullptr, BST_Node* left = u_nullptr, BST_Node* right = u_nullptr):
                 value(val),
                 parent(parent),
                 left(left),
                 right(right)
-            {}
+            {
+			}
 
             BST_Node (const BST_Node& other): value(other.value), parent(other.parent), left(other.left), right(other.right)
-            {}
+            {
+			}
 
-            virtual ~BST_Node() {}
+            virtual ~BST_Node()
+			{
+			}
 
-            BST_Node &operator=(const BST_Node& other)
+            BST_Node &operator= (const BST_Node& other)
             {
                 if (other == *this)
                     return (*this);
@@ -51,7 +57,7 @@ namespace ft
                 return (*this);
             }
 
-            bool operator==(const BST_Node& other)
+            bool operator== (const BST_Node& other)
             {
                 if (value == other.value)
                     return (true);
@@ -69,16 +75,19 @@ namespace ft
             Doubly_Linked_Node  *prev;
             Doubly_Linked_Node  *next;
             Doubly_Linked_Node(): prev(u_nullptr), next(u_nullptr)
-            {}
+            {
+			}
 
             Doubly_Linked_Node(const Data_T& val): prev(u_nullptr), next(u_nullptr), data(val)
-            {}
+            {
+			}
 
             Doubly_Linked_Node(const Data_T& val, Doubly_Linked_Node *prev, Doubly_Linked_Node *next):
                 prev(prev),
                 next(next),
                 data(val)
-            {}
+            {
+			}
     };
     //===================End Doubly_Linked_Node===================
 
@@ -185,6 +194,7 @@ namespace ft
 			{
                 return (node_alloc().max_size());
             }
+			
         private:
             node_pointer _BST_get_lower_node(node_pointer root)
 			{
