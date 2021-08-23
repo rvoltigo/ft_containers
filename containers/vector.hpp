@@ -22,9 +22,9 @@ namespace ft
 			
 			typedef typename allocator_type::reference                      reference;
 			typedef typename allocator_type::const_reference                const_reference;
-			typedef typename allocator_type::pointer                        pointer;//a pointer to an element stored
+			typedef typename allocator_type::pointer                        pointer;
 			typedef typename allocator_type::const_pointer                  const_pointer;
-			typedef typename allocator_type::size_type                      size_type;//unsigned integral type
+			typedef typename allocator_type::size_type                      size_type;
 
 			typedef ft::random_access_iterator<value_type>                  iterator;
 			typedef ft::random_access_iterator<const value_type>            const_iterator;
@@ -43,10 +43,7 @@ namespace ft
 
 			explicit vector(size_t n, const value_type &var = value_type(),
 					const allocator_type &allocate = allocator_type()):
-				_alloc(allocate),
-				_first(u_nullptr),
-				_last(u_nullptr),
-				_last_capacity(u_nullptr)
+				_alloc(allocate)
 			{
 				_first = _alloc.allocate(n);
 				_last_capacity = _first + n;
@@ -60,10 +57,6 @@ namespace ft
 					const allocator_type& alloc = allocator_type(),
 					typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr): _alloc(alloc)
 			{
-				bool is_valid;
-				if (!(is_valid = ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::value))
-					throw (ft::InvalidIteratorException<typename ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::type>());
-				
 				difference_type n = ft::distance(first, last);
 				_first = _alloc.allocate( n );
 				_last_capacity = _first + n;
@@ -75,7 +68,7 @@ namespace ft
 				}
 			}
 
-			vector (const vector& x): //Constructs a container with a copy of each of the elements in x, in the same order.
+			vector (const vector& x): 
 				_alloc(x._alloc),
 				_first(u_nullptr),
 				_last(u_nullptr),
@@ -274,9 +267,6 @@ namespace ft
 			void assign(InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
 			{
-				bool isValid = ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::value;
-				if (!isValid)
-					throw (ft::InvalidIteratorException<typename ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::type>());
 				this->clear();
 				size_type dist = ft::distance(first, last);
 				if (size_type(_last_capacity - _first) >= dist)
@@ -349,23 +339,22 @@ namespace ft
 				_last--;
 			}
 			
-			iterator erase(iterator position)
+			iterator erase (iterator position)
 			{
-				pointer tmp_pos = &(*position);
+				pointer p_pos = &(*position);
 				_alloc.destroy(&(*position));
-
 				if (&(*position) + 1 == _last)
 					_alloc.destroy(&(*position));
 				else
 				{
-					for (int i = 0; _last - &(*position) - 1; i++)
+					for (int i = 0; i < _last - &(*position) - 1; i++)
 					{
 						_alloc.construct(&(*position) + i, *(&(*position) + i + 1));
 						_alloc.destroy(&(*position) + i + 1);
 					}
 				}
 				_last -= 1;
-				return (iterator(tmp_pos));
+				return (iterator(p_pos));
 			}
 
 			iterator erase (iterator first, iterator last)
@@ -513,10 +502,6 @@ namespace ft
 			void insert (iterator position, InputIterator first, InputIterator last,
 			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
 			{
-				bool is_valid;
-				if (!(is_valid = ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::value))
-					throw (ft::InvalidIteratorException<typename ft::is_ft_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::type>());
-				
 				size_type dist = ft::distance(first, last);
 				if (size_type(_last_capacity - _last) >= dist)
 				{
@@ -575,25 +560,14 @@ namespace ft
         	{
 				return _alloc; 
 			}
-			// get_allocator
 
 			//==============#6 END ALLOCATOR #6==============
-
-
-
-
-			//=============#7 START NON-MEMBER #7=============
-			
-			// relational operators
-			// swap
-
-			//==============#7 END NON-MEMBER #7==============
 
 		private:
 			allocator_type  _alloc;
 			pointer         _first;
 			pointer         _last;
-			pointer         _last_capacity;//??
+			pointer         _last_capacity;
 			
 			void checkRange(const size_type& n) const
 			{

@@ -3,6 +3,7 @@
 
 #include "functions/functions.hpp"
 #include "functions/map_functions.hpp"
+// #include  
 
 namespace ft
 {
@@ -52,9 +53,6 @@ namespace ft
 					typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
 			:	_alloc(alloc), _comp(comp), _bst()
 			{
-				bool is_valid;
-				if (!(is_valid = ft::is_input_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::value))
-					throw (ft::InvalidIteratorException<typename ft::is_input_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::type>());
 				this->insert(first, last);
 			}
 
@@ -157,10 +155,6 @@ namespace ft
 				void insert (InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = u_nullptr)
 			{
-				bool is_valid;
-				if (!(is_valid = ft::is_input_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::value))
-					throw (ft::InvalidIteratorException<typename ft::is_input_iterator_tagged<typename ft::iterator_traits<InputIterator>::iterator_category >::type>());
-
 				difference_type n = ft::distance(first, last);
 				while (n--)
 					this->insert(*(first++));

@@ -13,13 +13,20 @@ namespace ft
             t1 first;
             t2 second;
 
-            pair(): first(), second(){};
+            pair(): first(t1()), second(t2()){};
+
+            pair (const t1& a, const t2& b): first(a), second(b)
+            {
+            };
 
             template<class U, class V>
-            pair (const pair<U, V>& pr): first(pr.first), second(pr.second){};
-
-
-            pair (const t1& a, const t2& b): first(a), second(b){};
+            pair (const pair<U, V>& pr): first(pr.first), second(pr.second)
+            {   
+            };
+            
+            ~pair()
+            {
+            };
             
             pair& operator= (const pair& pr)
             {

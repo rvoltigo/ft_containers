@@ -2,27 +2,27 @@
 #define MAP_FUNCTIONS_HPP
 
 #include "functions.hpp"
-#include "map_iterator.hpp"
+#include "map_const_iterator.hpp"
 
 namespace ft
 {
-    //==================Start BST_Node==================
+    //==================Start Node==================
     template <typename T>
-    struct BST_Node
+    struct Node
     {
         public:
             typedef T value_type;
 
             value_type value;
-            BST_Node* parent;
-            BST_Node* left;
-            BST_Node* right;
+            Node* parent;
+            Node* left;
+            Node* right;
 
-            BST_Node (): value(), parent(u_nullptr), left(u_nullptr), right(u_nullptr)
+            Node (): value(), parent(u_nullptr), left(u_nullptr), right(u_nullptr)
             {
 			}
 
-            BST_Node (BST_Node* parent = u_nullptr, BST_Node* left = u_nullptr, BST_Node* right = u_nullptr):
+            Node (Node* parent = u_nullptr, Node* left = u_nullptr, Node* right = u_nullptr):
                 value(),
                 parent(parent),
                 left(left),
@@ -30,7 +30,7 @@ namespace ft
             {
 			}
 
-            BST_Node (const value_type& val, BST_Node* parent = u_nullptr, BST_Node* left = u_nullptr, BST_Node* right = u_nullptr):
+            Node (const value_type& val, Node* parent = u_nullptr, Node* left = u_nullptr, Node* right = u_nullptr):
                 value(val),
                 parent(parent),
                 left(left),
@@ -38,15 +38,15 @@ namespace ft
             {
 			}
 
-            BST_Node (const BST_Node& other): value(other.value), parent(other.parent), left(other.left), right(other.right)
+            Node (const Node& other): value(other.value), parent(other.parent), left(other.left), right(other.right)
             {
 			}
 
-            virtual ~BST_Node()
+            virtual ~Node()
 			{
 			}
 
-            BST_Node &operator= (const BST_Node& other)
+            Node &operator= (const Node& other)
             {
                 if (other == *this)
                     return (*this);
@@ -57,41 +57,16 @@ namespace ft
                 return (*this);
             }
 
-            bool operator== (const BST_Node& other)
+            bool operator== (const Node& other)
             {
                 if (value == other.value)
                     return (true);
                 return (false);
             }
     };
-    //===================End BST_Node===================
+    //===================End Node===================
 
-    //===================Start Doubly_Linked_Node===================
-    template <class Data_T>
-    struct Doubly_Linked_Node 
-    {
-        public :
-            Data_T              data;
-            Doubly_Linked_Node  *prev;
-            Doubly_Linked_Node  *next;
-            Doubly_Linked_Node(): prev(u_nullptr), next(u_nullptr)
-            {
-			}
-
-            Doubly_Linked_Node(const Data_T& val): prev(u_nullptr), next(u_nullptr), data(val)
-            {
-			}
-
-            Doubly_Linked_Node(const Data_T& val, Doubly_Linked_Node *prev, Doubly_Linked_Node *next):
-                prev(prev),
-                next(next),
-                data(val)
-            {
-			}
-    };
-    //===================End Doubly_Linked_Node===================
-
-    template <class T, class Compare = ft::less<T>, class Node = ft::BST_Node<T>,
+    template <class T, class Compare = ft::less<T>, class Node = ft::Node<T>,
               class Type_Alloc = std::allocator<T>, class Node_Alloc = std::allocator<Node> >
     class Binary_search_tree
     {
@@ -102,17 +77,14 @@ namespace ft
 			typedef Node                                    node_type;
 			typedef Node *                                  node_pointer;
 			typedef Node_Alloc                              node_alloc;
-			typedef ft::BST_iterator<Node, Compare>         iterator;
-			typedef ft::BST_const_iterator<Node, Compare>   const_iterator;
+			typedef ft::map_iterator<Node, Compare>         iterator;
+			typedef ft::map_const_iterator<Node, Compare>   const_iterator;
 			typedef size_t                                  size_type;
 
-            node_pointer    _last_node;
-			node_alloc      _node_alloc;
-
-            Binary_search_tree(const node_alloc& node_alloc_init = node_alloc()): _node_alloc(node_alloc_init)
+            Binary_search_tree(const node_alloc& node_alloc_init = node_alloc()) : _node_alloc(node_alloc_init)
             {
                 _last_node = _node_alloc.allocate(1);
-                _node_alloc.consruct(_last_node, Node(_last_node, _last_node, _last_node));
+                _node_alloc.construct(_last_node, Node(_last_node, _last_node, _last_node));
             }
 
             ~Binary_search_tree()
@@ -120,6 +92,9 @@ namespace ft
                 _node_alloc.destroy(_last_node);
                 _node_alloc.deallocate(_last_node, 1);
             }
+
+			node_pointer    _last_node;
+			node_alloc      _node_alloc;
 
             ft::pair<iterator, bool> insertPair(value_type to_insert)
 			{
@@ -153,7 +128,7 @@ namespace ft
 				else
 					prev_node->left = new_node;
 				
-				_last_node->left = _BST_get_lower_node(_last_node->parent);
+				_last_node->left = _map_while_loop(_last_node->parent);
 				_last_node->right = _BST_get_higher_node(_last_node->parent);
 				_last_node->value.first += 1;
 				return (ft::make_pair(iterator(new_node, _last_node), true));
@@ -164,7 +139,7 @@ namespace ft
                 _removeByKey(_last_node->parent, to_remove);
             }
 
-            node_pointer searchByKey(value_type to_remove)
+            node_pointer searchByKey(value_type to_remove) const
 			{
 				node_pointer node = _last_node->parent;
 
@@ -196,17 +171,17 @@ namespace ft
             }
 			
         private:
-            node_pointer _BST_get_lower_node(node_pointer root)
+            node_pointer _map_while_loop(node_pointer arg)
 			{
-				while (root != _last_node && root->left != _last_node)
-					root = root->left;
-				return (root);
+				while (arg->left != _last_node && arg != _last_node)
+					arg = arg->left;
+				return (arg);
 			}
-			node_pointer _BST_get_higher_node(node_pointer root)
+			node_pointer _BST_get_higher_node(node_pointer arg)
 			{
-				while (root != _last_node && root->right != _last_node)
-					root = root->right;
-				return (root);
+				while (arg->right != _last_node && arg != _last_node)
+					arg = arg->right;
+				return (arg);
 			}
 			void _replaceNodeInParent(node_pointer node, node_pointer new_node)
 			{
@@ -223,7 +198,7 @@ namespace ft
 				else
 					_last_node->parent = new_node;
 
-				_last_node->left = _BST_get_lower_node(_last_node->parent);
+				_last_node->left = _map_while_loop(_last_node->parent);
 				_last_node->right = _BST_get_higher_node(_last_node->parent);
 				_last_node->value.first -= 1;
 				
@@ -235,13 +210,11 @@ namespace ft
 
 			void _replaceDoubleChildren(node_pointer& to_remove, node_pointer new_node)
 			{
-				if (new_node->parent != _last_node)
-				{
-					if (new_node->parent != to_remove)
+				if (new_node->parent != _last_node && new_node->parent != to_remove)
 						new_node->parent->left = new_node->right;
-				}
 				
 				new_node->parent = to_remove->parent;
+
 				if (to_remove->left != new_node)
 					new_node->left = to_remove->left;
 				if (to_remove->right != new_node)
@@ -269,7 +242,7 @@ namespace ft
 					to_remove->parent = new_node;
 				}
 
-				_last_node->left = _BST_get_lower_node(_last_node->parent);
+				_last_node->left = _map_while_loop(_last_node->parent);
 				_last_node->right = _BST_get_higher_node(_last_node->parent);
 				_last_node->value.first -= 1;
 
@@ -293,7 +266,7 @@ namespace ft
 
 				if (node->left != _last_node && node->right != _last_node)
 				{
-					node_pointer successor = _BST_get_lower_node(node->right);
+					node_pointer successor = _map_while_loop(node->right);
 					_replaceDoubleChildren(node, successor);
 					return ;
 				}

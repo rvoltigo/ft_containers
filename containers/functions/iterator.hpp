@@ -57,10 +57,16 @@ namespace ft
                 return (reverse_iterator(_elem - n));
             }
 
+            reverse_iterator& operator++()
+            {
+                --_elem;
+                return (*this);
+            }
+
             reverse_iterator operator++(int)
             {
                 reverse_iterator result = *this;
-                (*this)++;
+                ++(*this);
                 return (result);
             }
 
@@ -75,10 +81,16 @@ namespace ft
                 return (reverse_iterator(_elem + n));
             }
 
-            reverse_iterator operator-- (int)
+            reverse_iterator& operator--()
+            {
+                ++_elem;
+                return (*this);
+            }
+
+            reverse_iterator operator--(int)
             {
                 reverse_iterator result = *this;
-                (*this)--;
+                --(*this);
                 return (result);
             }
 

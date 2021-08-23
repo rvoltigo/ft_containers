@@ -215,29 +215,5 @@ namespace ft
         struct is_ft_iterator_tagged<ft::output_iterator_tag>
             : public valid_iterator_tag_res<true, ft::output_iterator_tag> { };
     //===================End is_ft_iterator_tagged===================
-
-    //===================Start InvalidIteratorException===================
-    template <typename T>
-    class InvalidIteratorException : public std::exception
-    {
-        private:
-            std::string _str;
-        public:
-            InvalidIteratorException () throw()
-            {
-                _str = "Is invalid iterator tag: " + std::string(typeid(T).name());
-            }
-            InvalidIteratorException (const InvalidIteratorException&) throw()
-            {}
-            InvalidIteratorException &operator=(const InvalidIteratorException&) throw()
-            {}
-            virtual ~InvalidIteratorException() throw()
-            {}
-            virtual const char * what() const throw()
-            {
-                return (_str.c_str());
-            }
-    };
-    //===================End InvalidIteratorException===================
 }
 #endif
