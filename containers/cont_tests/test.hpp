@@ -4,12 +4,7 @@
 # include <iostream>
 # include <string>
 
-# define NORMAL "\033[0;37m"
-# define UNDERLINE "\033[4m"
-# define BOLD_RED "\033[1;31m"
-# define BOLD_GREEN "\033[1;32m"
-
-bool printBoolResult(bool stl_bool, bool ft_bool);
+bool printBoolResult(bool originalStl, bool myFt);
 
 template <class T>
 std::string equal(const T& t1, const T& t2)
@@ -24,7 +19,7 @@ bool equalbool(const T& t1, const T& t2)
 }
 
 template<class T>
-static bool printSingleValue(const T& t1, const T& t2)
+static bool showInfo(const T& t1, const T& t2)
 {
     std::cout << "\n══════════════════════════════════════════════════════════════\n";
     std::cout << "Value from :\n";

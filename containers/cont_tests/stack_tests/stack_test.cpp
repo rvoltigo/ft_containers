@@ -6,7 +6,7 @@ void stack_Default_Constructor()
     std::stack<int> stl_default;
     ft::stack<int> ft_default;
 
-    std::cout << ((printStackAttributes(stl_default, ft_default) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfoStack(stl_default, ft_default) == true) ? "[OK]" : "[❌]");
 }
 
 void stack_Empty_true()
@@ -15,7 +15,7 @@ void stack_Empty_true()
     std::stack<int> stl_empty;
     ft::stack<int> ft_empty;
 
-    std::cout << ((printStackAttributes(stl_empty, ft_empty) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfoStack(stl_empty, ft_empty) == true) ? "[OK]" : "[❌]");
 }
 
 void stack_Empty_false()
@@ -27,7 +27,7 @@ void stack_Empty_false()
     stl_empty.push(42);
     ft_empty.push(42);
 
-    std::cout << ((printStackAttributes(stl_empty, ft_empty) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfoStack(stl_empty, ft_empty) == true) ? "[OK]" : "[❌]");
 
 }
 
@@ -43,7 +43,7 @@ void stack_Size()
         ft_size.push(i);
     }
 
-    std::cout << ((printStackAttributes(stl_size, ft_size) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfoStack(stl_size, ft_size) == true) ? "[OK]" : "[❌]");
 }
 
 void stack_top()
@@ -59,12 +59,12 @@ void stack_top()
         ft_top.push(i);
     }
 
-    std::cout << ((printSingleValue(stl_top.top(), ft_top.top()) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfo(stl_top.top(), ft_top.top()) == true) ? "[OK]" : "[❌]");
     
     stl_top.pop();
     ft_top.pop();
 
-    std::cout << ((printSingleValue(stl_top.top(), ft_top.top()) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfo(stl_top.top(), ft_top.top()) == true) ? "[OK]" : "[❌]");
 }
 
 void stack_Push()
@@ -79,7 +79,7 @@ void stack_Push()
         ft_size.push(i * 2);
     }
 
-    std::cout << ((printStackAttributes(stl_size, ft_size) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfoStack(stl_size, ft_size) == true) ? "[OK]" : "[❌]");
 
 }
 
@@ -96,12 +96,12 @@ void stack_Pop()
         ft_pop.push(i);
     }
 
-    std::cout << ((printStackAttributes(stl_pop, ft_pop) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfoStack(stl_pop, ft_pop) == true) ? "[OK]" : "[❌]");
     
     stl_pop.pop();
     ft_pop.pop();
 
-    std::cout << ((printStackAttributes(stl_pop, ft_pop) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((showInfoStack(stl_pop, ft_pop) == true) ? "[OK]" : "[❌]");
 }
 
 void stack_operatorEqualTrue()
@@ -121,10 +121,10 @@ void stack_operatorEqualTrue()
         ft_pop_two.push(i);
     }
 
-    printStackAttributes(stl_pop_one, ft_pop_one);
-    printStackAttributes(stl_pop_two, ft_pop_two);
+    showInfoStack(stl_pop_one, ft_pop_one);
+    showInfoStack(stl_pop_two, ft_pop_two);
     
-    std::cout << ((printBoolResult((stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((printBoolResult((stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? "[OK]" : "[❌]");
 }
 
 void stackOperatorSmallerTrue()
@@ -152,10 +152,10 @@ void stackOperatorSmallerTrue()
         }
     }
 
-    printStackAttributes(stl_pop_one, ft_pop_one);
-    printStackAttributes(stl_pop_two, ft_pop_two);
+    showInfoStack(stl_pop_one, ft_pop_one);
+    showInfoStack(stl_pop_two, ft_pop_two);
     
-    std::cout << ((printBoolResult((stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((printBoolResult((stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? "[OK]" : "[❌]");
 }
 
 void stackOperatorNotEqualFalse()
@@ -175,10 +175,10 @@ void stackOperatorNotEqualFalse()
         ft_pop_two.push(i);
     }
     
-    printStackAttributes(stl_pop_one, ft_pop_one);
-    printStackAttributes(stl_pop_two, ft_pop_two);
+    showInfoStack(stl_pop_one, ft_pop_one);
+    showInfoStack(stl_pop_two, ft_pop_two);
     
-    std::cout << ((printBoolResult((stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((printBoolResult((stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? "[OK]" : "[❌]");
 
 }
 
@@ -199,9 +199,9 @@ void stackOperatorMoreTrue()
         ft_pop_two.push(i);
     }
 
-    printStackAttributes(stl_pop_one, ft_pop_one);
-    printStackAttributes(stl_pop_two, ft_pop_two);
+    showInfoStack(stl_pop_one, ft_pop_one);
+    showInfoStack(stl_pop_two, ft_pop_two);
     
-    std::cout << ((printBoolResult((stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? "[OK]" : "[NOP]");
+    std::cout << ((printBoolResult((stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? "[OK]" : "[❌]");
 
 }

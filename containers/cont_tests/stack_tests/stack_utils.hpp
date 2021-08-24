@@ -25,20 +25,17 @@ std::string equalContent(
 }
 
 template <class T>
-bool printStackAttributes(
+bool showInfoStack(
     std::stack<T> stl_stack,
     ft::stack<T> ft_stack
 )
 {
-    /* STL Values */
     std::string stl_empty = ((stl_stack.empty() == 1) ? "true" : "false");
     size_t stl_size = stl_stack.size();
 
-    /* FT Values */
     std::string ft_empty = ((ft_stack.empty() == 1) ? "true" : "false");
     size_t ft_size = ft_stack.size();
 
-    /* FT Result compare values */
     bool empty = equalbool(ft_empty, stl_empty);
     bool size = equalbool(ft_size, stl_size);
     std::string content = equalContent(stl_stack, ft_stack);
@@ -83,7 +80,6 @@ bool printStackAttributes(
 
     std::cout << "══════════════════════════════════════════════════════════════\n";
 
-    /* Error case */
     if (empty == false)
         return (false);
     else if (size == false)

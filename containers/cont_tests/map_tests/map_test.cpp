@@ -7,7 +7,7 @@ void map_constr()
 		std::cout<< std::endl << "===================================Default constructor===================================" << std::endl;;
         std::map<int, std::string> stl_default_map;
         ft::map<int, std::string> ft_default_map;
-        std::cout << ((printMapAttributes(stl_default_map, ft_default_map) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((showInfoMap(stl_default_map, ft_default_map) == true) ? "[✅]" : "[❌]");
     }
     catch(const std::exception& e)
     {
@@ -29,12 +29,12 @@ void map_constr()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		std::map<int, std::string> stl_map_copy(stl_map.begin(), stl_map.end());
 		ft::map<int, std::string> ft_map_copy(ft_map.begin(), ft_map.end());
 
-		std::cout << ((printMapAttributes(stl_map_copy, ft_map_copy) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfoMap(stl_map_copy, ft_map_copy) == true) ? "[✅]" : "[❌]");
     }
     catch(const std::exception& e)
     {
@@ -60,12 +60,12 @@ void map_assign()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-        printMapAttributes(stl_map, ft_map);
+        showInfoMap(stl_map, ft_map);
 
 		std::map<int, std::string> stl_map_copy = stl_map;
 		ft::map<int, std::string> ft_map_copy = ft_map;
 
-		std::cout << ((printMapAttributes(stl_map_copy, ft_map_copy) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfoMap(stl_map_copy, ft_map_copy) == true) ? "[✅]" : "[❌]");
     }
     catch(const std::exception& e)
     {
@@ -89,10 +89,10 @@ void map_begins()
 			stl_map.insert(std::make_pair(range_int[i], range_str[i]));
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
-        printMapAttributes(stl_map, ft_map);
+        showInfoMap(stl_map, ft_map);
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_map.begin()).first, (*ft_map.begin()).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_map.begin()).second, (*ft_map.begin()).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_map.begin()).first, (*ft_map.begin()).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_map.begin()).second, (*ft_map.begin()).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -114,10 +114,10 @@ void map_begins()
 			stl_map.insert(std::make_pair(range_int[i], range_str[i]));
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
-        printMapAttributes(stl_map, ft_map);
+        showInfoMap(stl_map, ft_map);
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_map.begin()).first, (*ft_map.begin()).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_map.begin()).second, (*ft_map.begin()).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_map.begin()).first, (*ft_map.begin()).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_map.begin()).second, (*ft_map.begin()).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -147,14 +147,14 @@ void map_ends()
         std::map<int, std::string>::iterator stl_it = stl_map.end();
 		ft::map<int, std::string>::iterator ft_it = ft_map.end();
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		--stl_it;
 		--ft_it;
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -181,14 +181,14 @@ void map_ends()
 		std::map<int, std::string>::const_iterator stl_it = stl_map.end();
 		ft::map<int, std::string>::const_iterator ft_it = ft_map.end();
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
         --stl_it;
 		--ft_it;
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -218,14 +218,14 @@ void map_reverses()
 		std::map<int, std::string>::reverse_iterator stl_it = stl_map.rbegin();
 		ft::map<int, std::string>::reverse_iterator ft_it = ft_map.rbegin();
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		++stl_it;
 		++ft_it;
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -252,11 +252,11 @@ void map_reverses()
 		std::map<int, std::string>::const_reverse_iterator stl_it = stl_map.rbegin();
 		ft::map<int, std::string>::const_reverse_iterator ft_it = ft_map.rbegin();
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -286,14 +286,14 @@ void map_reverses_end()
 		std::map<int, std::string>::reverse_iterator stl_it = stl_map.rend();
 		ft::map<int, std::string>::reverse_iterator ft_it = ft_map.rend();
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		--stl_it;
 		--ft_it;
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -321,14 +321,14 @@ void map_reverses_end()
 		std::map<int, std::string>::const_reverse_iterator stl_it = stl_map.rend();
 		ft::map<int, std::string>::const_reverse_iterator ft_it = ft_map.rend();
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		--(--stl_it);
 		--(--ft_it);
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -345,8 +345,8 @@ void map_empty()
 		std::map<int, std::string> stl_default_map;
 		ft::map<int, std::string> ft_default_map;
 
-		printMapAttributes(stl_default_map, ft_default_map);
-		std::cout << ((printBoolResult(stl_default_map.empty(), ft_default_map.empty()) == true) ? "[OK]" : "[NOP]");
+		showInfoMap(stl_default_map, ft_default_map);
+		std::cout << ((printBoolResult(stl_default_map.empty(), ft_default_map.empty()) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -370,8 +370,8 @@ void map_empty()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
-		std::cout << ((printBoolResult(stl_map.empty(), ft_map.empty()) == true) ? "[OK]" : "[NOP]");
+		showInfoMap(stl_map, ft_map);
+		std::cout << ((printBoolResult(stl_map.empty(), ft_map.empty()) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -397,14 +397,14 @@ void map_size()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 		std::cout << "[";
-		std::cout << ((printSingleValue(stl_map.size(), ft_map.size()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo(stl_map.size(), ft_map.size()) == true) ? "[✅]" : "[❌]");
 
 		stl_map.insert(std::make_pair(42, "Represent"));
 		ft_map.insert(ft::make_pair(42, "Represent"));
 
-		std::cout << ((printSingleValue(stl_map.size(), ft_map.size()) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo(stl_map.size(), ft_map.size()) == true) ? "[✅]" : "[❌]");
 
 		std::cout << "]";
     }
@@ -419,8 +419,8 @@ void map_size()
         std::map<int, std::string> stl_default_map;
 		ft::map<int, std::string> ft_default_map;
 
-		printMapAttributes(stl_default_map, ft_default_map);
-		std::cout << ((printSingleValue(stl_default_map.max_size(), ft_default_map.max_size()) == true) ? "[OK]" : "[NOP]");
+		showInfoMap(stl_default_map, ft_default_map);
+		std::cout << ((showInfo(stl_default_map.max_size(), ft_default_map.max_size()) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -447,15 +447,15 @@ void map_operators()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		std::cout << "[";
-		std::cout << ((printSingleValue(stl_map[-9], ft_map[-9]) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo(stl_map[-9], ft_map[-9]) == true) ? "[✅]" : "[❌]");
 
 		stl_map[-9] = "Changed";
 		ft_map[-9] = "Changed";
 
-		std::cout << ((printSingleValue(stl_map[-9], ft_map[-9]) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo(stl_map[-9], ft_map[-9]) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -475,7 +475,7 @@ void map_inserts()
 		stl_map.insert(std::make_pair(42, "La famille"));
 		ft_map.insert(ft::make_pair(42, "La famille"));
 
-		std::cout << ((printMapAttributes(stl_map, ft_map) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfoMap(stl_map, ft_map) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -498,12 +498,12 @@ void map_inserts()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-        printMapAttributes(stl_map, ft_map);
+        showInfoMap(stl_map, ft_map);
 		
 		stl_map.insert(++(stl_map.begin()), std::make_pair(42, "Nice"));
 		ft_map.insert(++(ft_map.begin()), ft::make_pair(42, "Nice"));
 
-		std::cout << ((printMapAttributes(stl_map, ft_map) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfoMap(stl_map, ft_map) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -529,13 +529,13 @@ void map_inserts()
 			ft_map_two.insert(ft::make_pair(range_int[i] + 266, range_str[i] + "_two"));
 		}
 
-		printMapAttributes(stl_map_one, ft_map_one);
-		printMapAttributes(stl_map_two, ft_map_two);
+		showInfoMap(stl_map_one, ft_map_one);
+		showInfoMap(stl_map_two, ft_map_two);
 		
 		stl_map_one.insert(stl_map_two.begin(), stl_map_two.end());
 		ft_map_one.insert(ft_map_two.begin(), ft_map_two.end());
 
-		std::cout << ((printMapAttributes(stl_map_one, ft_map_one) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfoMap(stl_map_one, ft_map_one) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -562,12 +562,12 @@ void map_erase()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 		
 		stl_map.erase(stl_map.begin());
 		ft_map.erase(ft_map.begin());
 
-		std::cout << ((printMapAttributes(stl_map, ft_map) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfoMap(stl_map, ft_map) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -589,12 +589,12 @@ void map_erase()
 			stl_map.insert(std::make_pair(range_int[i], range_str[i]));
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
-        printMapAttributes(stl_map, ft_map);
+        showInfoMap(stl_map, ft_map);
 		
 		stl_map.erase(-98);
 		ft_map.erase(-98);
 
-		std::cout << ((printMapAttributes(stl_map, ft_map) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfoMap(stl_map, ft_map) == true) ? "[✅]" : "[❌]");
     }
     catch(const std::exception& e)
     {
@@ -616,7 +616,7 @@ void map_erase()
             ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
         }
 
-        printMapAttributes(stl_map, ft_map);
+        showInfoMap(stl_map, ft_map);
 	    
 		std::map<int, std::string>::iterator stl_it_beg = stl_map.begin();
 		ft::map<int, std::string>::iterator ft_it_beg = ft_map.begin();
@@ -634,7 +634,7 @@ void map_erase()
         stl_map.erase(stl_it_beg, stl_it_end);
         ft_map.erase(ft_it_beg, ft_it_end);
 
-        std::cout << ((printMapAttributes(stl_map, ft_map) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((showInfoMap(stl_map, ft_map) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -664,14 +664,14 @@ void map_swap()
             ft_map_two.insert(ft::make_pair(range_int[i] + 120, range_str[i]));
         }
 
-        printMapAttributes(stl_map_one, ft_map_one);
-        printMapAttributes(stl_map_two, ft_map_two);
+        showInfoMap(stl_map_one, ft_map_one);
+        showInfoMap(stl_map_two, ft_map_two);
         
         stl_map_one.swap(stl_map_two);
         ft_map_one.swap(ft_map_two);
 
-        std::cout << ((printMapAttributes(stl_map_one, ft_map_one) == true) ? "[OK]" : "[NOP]");
-        std::cout << ((printMapAttributes(stl_map_two, ft_map_two) == true) ? "[OK]" : "[NOP]");
+        std::cout << ((showInfoMap(stl_map_one, ft_map_one) == true) ? "[✅]" : "[❌]");
+        std::cout << ((showInfoMap(stl_map_two, ft_map_two) == true) ? "[✅]" : "[❌]");
     }
     catch(const std::exception& e)
     {
@@ -696,12 +696,12 @@ void map_clear()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 		
 		stl_map.clear();
 		ft_map.clear();
 
-		std::cout << ((printMapAttributes(stl_map, ft_map) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfoMap(stl_map, ft_map) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -721,7 +721,7 @@ void map_key_comp()
 		bool stl_res = stl_key(42, 99);
 		bool ft_res = ft_key(42, 99);
 
-		std::cout << ((printBoolResult(stl_res, ft_res) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printBoolResult(stl_res, ft_res) == true) ? "[✅]" : "[❌]");
     }
     catch(const std::exception& e)
     {
@@ -740,7 +740,7 @@ void map_value_comp()
 		bool stl_res = stl_key(std::make_pair(99, "End"), std::make_pair(42, "Noice"));
 		bool ft_res = ft_key(ft::make_pair(99, "End"), ft::make_pair(42, "Noice"));
 
-		std::cout << ((printBoolResult(stl_res, ft_res) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printBoolResult(stl_res, ft_res) == true) ? "[✅]" : "[❌]");
     }
     catch(const std::exception& e)
     {
@@ -768,11 +768,11 @@ void map_find_exist()
 		std::map<int, std::string>::iterator stl_it = stl_map.find(42);		
 		ft::map<int, std::string>::iterator ft_it = ft_map.find(42);
 		
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 		
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -800,9 +800,9 @@ void map_not_exist()
 		std::map<int, std::string>::iterator stl_it = stl_map.find(42);		
 		ft::map<int, std::string>::iterator ft_it = ft_map.find(42);
 		
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 		
-		std::cout << ((printBoolResult((stl_it == stl_map.end()), (ft_it == ft_map.end())) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printBoolResult((stl_it == stl_map.end()), (ft_it == ft_map.end())) == true) ? "[✅]" : "[❌]");
 
     }
     catch(const std::exception& e)
@@ -831,11 +831,11 @@ void map_const_if_Find()
 		std::map<int, std::string>::const_iterator stl_it = stl_map.find(99);		
 		ft::map<int, std::string>::const_iterator ft_it = ft_map.find(99);
 		
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 		
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -860,11 +860,11 @@ void map_count()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		std::cout << "[";
-		std::cout << ((printBoolResult((stl_map.count(-98) > 0), (ft_map.count(-98) > 0)) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printBoolResult((stl_map.count(42) > 0), (ft_map.count(42) > 0)) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((printBoolResult((stl_map.count(-98) > 0), (ft_map.count(-98) > 0)) == true) ? "[✅]" : "[❌]");
+		std::cout << ((printBoolResult((stl_map.count(42) > 0), (ft_map.count(42) > 0)) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -889,14 +889,14 @@ void map_lower_bound()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		std::map<int, std::string>::iterator stl_it = stl_map.lower_bound(80);
 		ft::map<int, std::string>::iterator ft_it = ft_map.lower_bound(80);
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -921,14 +921,14 @@ void map_upper_bound()
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
 
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		std::map<int, std::string>::iterator stl_it = stl_map.upper_bound(950);
 		ft::map<int, std::string>::iterator ft_it = ft_map.upper_bound(950);
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*stl_it).first, (*ft_it).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*stl_it).second, (*ft_it).second) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*stl_it).first, (*ft_it).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*stl_it).second, (*ft_it).second) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)
@@ -952,11 +952,11 @@ void map_equal_range()
 			stl_map.insert(std::make_pair(range_int[i], range_str[i]));
 			ft_map.insert(ft::make_pair(range_int[i], range_str[i]));
 		}
-		printMapAttributes(stl_map, ft_map);
+		showInfoMap(stl_map, ft_map);
 
 		std::cout << "[";
-		std::cout << ((printSingleValue((*(stl_map.equal_range(65).first)).first, (*(ft_map.equal_range(65).first)).first) == true) ? "[OK]" : "[NOP]");
-		std::cout << ((printSingleValue((*(stl_map.equal_range(65).second)).first, (*(ft_map.equal_range(65).second)).first) == true) ? "[OK]" : "[NOP]");
+		std::cout << ((showInfo((*(stl_map.equal_range(65).first)).first, (*(ft_map.equal_range(65).first)).first) == true) ? "[✅]" : "[❌]");
+		std::cout << ((showInfo((*(stl_map.equal_range(65).second)).first, (*(ft_map.equal_range(65).second)).first) == true) ? "[✅]" : "[❌]");
 		std::cout << "]";
     }
     catch(const std::exception& e)

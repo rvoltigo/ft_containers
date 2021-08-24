@@ -5,9 +5,6 @@
 #include "../../map.hpp"
 #include <map>
 
-
-
-
 template <class Ta, class Tb>
 std::string equalContent(
 	const std::map<Ta, Tb> & stl_map,
@@ -29,7 +26,7 @@ std::string equalContent(
 }
 
 template <class Ta, class Tb>
-bool printMapAttributes(
+bool showInfoMap(
 	std::map<Ta, Tb>& stl_map,
 	ft::map<Ta, Tb>& ft_map
 )

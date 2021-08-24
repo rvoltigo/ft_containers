@@ -1,10 +1,10 @@
 #include "test.hpp"
 
-bool printBoolResult(bool stl_bool, bool ft_bool)
+bool printBoolResult(bool originalStl, bool myFt)
 {
     std::cout << "\nBool result : \n";
-    std::cout << " - STL : " << (stl_bool ? "true" : "false") << std::endl;
-    std::cout << " - FT  : " << (ft_bool ? "true" : "false") << std::endl;
+    std::cout << " - ORIGINAL STL : " << (originalStl ? "TRUE" : "FALSE") << std::endl;
+    std::cout << " - MY       FT  : " << (myFt ? "TRUE" : "FALSE") << std::endl;
 
-    return (stl_bool == ft_bool);
+    return (originalStl == myFt);
 }

@@ -26,7 +26,7 @@ std::string equalContent(
 }
 
 template <class T>
-bool printVectorAttributes(
+bool showInfoVector(
     std::vector<T>& stl_vector,
     ft::vector<T>& ft_vector
 )
@@ -104,10 +104,11 @@ bool printVectorAttributes(
 }
 
 void vector_Default_constructor();
+void vector_CopyConstructor();
+void vector_RangeConstructor();
+
 void vector_FillConstructor();
 void vector_FillConstructorSizedValue();
-void vector_RangeConstructor();
-void vector_CopyConstructor();
 void vectorAssignOperator();
 void vectorIteratorBegin();
 void vectorConstIteratorBegin();

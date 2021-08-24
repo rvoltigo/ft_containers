@@ -151,9 +151,7 @@ namespace ft
 
 			void resize (size_type n, value_type val = value_type())
 			{
-				if (n > this->max_size())
-					throw (std::length_error("Error: vector::resize"));
-				else if (n < this->max_size())
+				if (n < this->size())
 				{
 					while (this->size() > n)
 					{
@@ -161,6 +159,8 @@ namespace ft
 						_alloc.destroy(_last);
 					}
 				}
+				else if (n > this->max_size())
+					throw (std::length_error("Error: vector::resize"));
 				else
 					this->insert(this->end(), n - this->size(), val);
 			}
