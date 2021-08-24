@@ -1,10 +1,8 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
-# include <memory>
-# include <algorithm>
-# include <cstddef>
-# include <tgmath.h>
+#include <memory>
+#include <iostream>
 
 #include "functions/functions.hpp"
 #include "functions/random_iterator.hpp"
@@ -30,7 +28,7 @@ namespace ft
 			typedef ft::random_access_iterator<const value_type>            const_iterator;
 			typedef ft::reverse_iterator<iterator>                          reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>                    const_reverse_iterator;
-			typedef typename ft::iterator_traits<iterator>::difference_type difference_type; //signed integral type
+			typedef typename ft::iterator_traits<iterator>::difference_type difference_type;
 
 			//=============#1 START MEMBER FUNCTIONS #1=============
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "head.hpp"
+#include "../head.hpp"
 int main()
 {
     map_constr();
@@ -66,6 +66,6 @@ int main()
     std::cin.ignore();
 
     map_equal_range();
-    std::cout << "End!!!";
+    std::cout << std::endl << "End!!!" << std::endl;
     return (0);
 }

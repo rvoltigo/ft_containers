@@ -1,6 +1,6 @@
-#include "test.hpp"
+#include "testEqual.hpp"
 
-bool printBoolResult(bool originalStl, bool myFt)
+bool showResult(bool originalStl, bool myFt)
 {
     std::cout << "\nBool result : \n";
     std::cout << " - ORIGINAL STL : " << (originalStl ? "TRUE" : "FALSE") << std::endl;

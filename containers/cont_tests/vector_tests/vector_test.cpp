@@ -843,7 +843,7 @@ void vectorRealationEqualTrue()
     showInfoVector(stl_equal_one, ft_equal_one);
     showInfoVector(stl_equal_two, ft_equal_two);
 
-    std::cout << ((printBoolResult((stl_equal_one == stl_equal_two), (ft_equal_one == ft_equal_two))) ? "[✅]" : "[❌]");
+    std::cout << ((showResult((stl_equal_one == stl_equal_two), (ft_equal_one == ft_equal_two))) ? "[✅]" : "[❌]");
 }
 
 void vectorRealationEqualFalse()
@@ -882,7 +882,7 @@ void vectorRealationEqualFalse()
     showInfoVector(stl_equal_one, ft_equal_one);
     showInfoVector(stl_equal_two, ft_equal_two);
 
-    std::cout << ((printBoolResult((stl_equal_one == stl_equal_two), (ft_equal_one == ft_equal_two))) ? "[✅]" : "[❌]");
+    std::cout << ((showResult((stl_equal_one == stl_equal_two), (ft_equal_one == ft_equal_two))) ? "[✅]" : "[❌]");
 }
 
 void vectorRealationNotEqualTrue()
@@ -922,7 +922,7 @@ void vectorRealationNotEqualTrue()
     showInfoVector(stlOperatorFirst, ftOperatorOne);
     showInfoVector(stlOperatorSecond, ftOperatorSecond);
 
-    std::cout << ((printBoolResult((stlOperatorFirst != stlOperatorSecond), (ftOperatorOne != ftOperatorSecond))) ? "[✅]" : "[❌]");
+    std::cout << ((showResult((stlOperatorFirst != stlOperatorSecond), (ftOperatorOne != ftOperatorSecond))) ? "[✅]" : "[❌]");
 }
 
 void vectorRealationNotEqualFalse()
@@ -961,7 +961,7 @@ void vectorRealationNotEqualFalse()
     showInfoVector(stlOperatorFirst, ftOperatorOne);
     showInfoVector(stlOperatorSecond, ftOperatorSecond);
  
-    std::cout << ((printBoolResult((stlOperatorFirst != stlOperatorSecond), (ftOperatorOne != ftOperatorSecond))) ? "[✅]" : "[❌]");
+    std::cout << ((showResult((stlOperatorFirst != stlOperatorSecond), (ftOperatorOne != ftOperatorSecond))) ? "[✅]" : "[❌]");
 }
 
 void vectorSmallTrue()
@@ -1001,7 +1001,7 @@ void vectorSmallTrue()
     showInfoVector(stlOperatorFirst, ftOperatorOne);
     showInfoVector(stlOperatorSecond, ftOperatorSecond);
 
-    std::cout << ((printBoolResult((stlOperatorFirst < stlOperatorSecond), (ftOperatorOne < ftOperatorSecond))) ? "[✅]" : "[❌]");
+    std::cout << ((showResult((stlOperatorFirst < stlOperatorSecond), (ftOperatorOne < ftOperatorSecond))) ? "[✅]" : "[❌]");
 }
 
 void vectorSmallFalse()
@@ -1041,7 +1041,7 @@ void vectorSmallFalse()
     showInfoVector(stlOperatorFirst, ftOperatorOne);
     showInfoVector(stlOperatorSecond, ftOperatorSecond);
 
-    std::cout << ((printBoolResult((stlOperatorFirst < stlOperatorSecond), (ftOperatorOne < ftOperatorSecond))) ? "[✅]" : "[❌]");
+    std::cout << ((showResult((stlOperatorFirst < stlOperatorSecond), (ftOperatorOne < ftOperatorSecond))) ? "[✅]" : "[❌]");
 }
 
 void vectorMoreTrue()
@@ -1080,7 +1080,7 @@ void vectorMoreTrue()
     showInfoVector(stlOperatorFirst, ftOperatorOne);
     showInfoVector(stlOperatorSecond, ftOperatorSecond);
     
-    std::cout << ((printBoolResult((stlOperatorFirst > stlOperatorSecond), (ftOperatorOne > ftOperatorSecond))) ? "[✅]" : "[❌]");
+    std::cout << ((showResult((stlOperatorFirst > stlOperatorSecond), (ftOperatorOne > ftOperatorSecond))) ? "[✅]" : "[❌]");
 }
 
 void vectorMoreFalse()
@@ -1121,5 +1121,5 @@ void vectorMoreFalse()
     showInfoVector(stlOperatorSecond, ftOperatorSecond);
 
 
-    std::cout << ((printBoolResult((stlOperatorFirst > stlOperatorSecond), (ftOperatorOne > ftOperatorSecond))) ? "[✅]" : "[❌]");
+    std::cout << ((showResult((stlOperatorFirst > stlOperatorSecond), (ftOperatorOne > ftOperatorSecond))) ? "[✅]" : "[❌]");
 }

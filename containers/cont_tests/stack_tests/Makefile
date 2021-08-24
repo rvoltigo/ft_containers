@@ -1,13 +1,12 @@
-SRCS			= main_vector.cpp\
-				  vector_tests/vector_test.cpp\
-				  test.cpp
-				  
+SRCS			= main_stack.cpp\
+				  stack_test.cpp\
+				  ../showResult.cpp
 OBJS			= $(SRCS:.cpp=.o)
 
 CXX=clang++
 CXXFLAGS		= -Wall -Wextra -Werror
 
-NAME			= ex02
+NAME			= run_stack
 
 all:			$(NAME)
 

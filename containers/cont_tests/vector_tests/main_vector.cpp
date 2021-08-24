@@ -1,5 +1,5 @@
 #include <iostream>
-#include "head.hpp"
+#include "../head.hpp"
 
 int main()
 {
@@ -134,6 +134,6 @@ int main()
     
     vectorMoreFalse();
 
-    std::cout << "End!!!";
+    std::cout << std::endl << "End!!!" << std::endl;
     return (0);
 }

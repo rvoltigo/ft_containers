@@ -1,7 +1,7 @@
 #ifndef VECTOR_UTILS_HPP
 #define VECTOR_UTILS_HPP
 
-#include "../test.hpp"
+#include "../testEqual.hpp"
 #include "../../vector.hpp"
 #include <vector>
 

@@ -3,83 +3,83 @@
 void stack_Default_Constructor()
 {
     std::cout<< std::endl << "===================================Default constructor===================================" << std::endl;;
-    std::stack<int> stl_default;
-    ft::stack<int> ft_default;
+    std::stack<int> stlDefaultConstr;
+    ft::stack<int> ftDefaultConstr;
 
-    std::cout << ((showInfoStack(stl_default, ft_default) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfoStack(stlDefaultConstr, ftDefaultConstr) == true) ? "[✅]" : "[❌]");
 }
 
 void stack_Empty_true()
 {
     std::cout<< std::endl << "===================================stack_Empty_true===================================" << std::endl;;
-    std::stack<int> stl_empty;
-    ft::stack<int> ft_empty;
+    std::stack<int> stlEmpty;
+    ft::stack<int> ftEmpty;
 
-    std::cout << ((showInfoStack(stl_empty, ft_empty) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfoStack(stlEmpty, ftEmpty) == true) ? "[✅]" : "[❌]");
 }
 
 void stack_Empty_false()
 {
     std::cout<< std::endl << "===================================stack_Empty_false===================================" << std::endl;;
-    std::stack<int> stl_empty;
-    ft::stack<int> ft_empty;
+    std::stack<int> stlEmpty;
+    ft::stack<int> ftEmpty;
 
-    stl_empty.push(42);
-    ft_empty.push(42);
+    stlEmpty.push(42);
+    ftEmpty.push(42);
 
-    std::cout << ((showInfoStack(stl_empty, ft_empty) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfoStack(stlEmpty, ftEmpty) == true) ? "[✅]" : "[❌]");
 
 }
 
 void stack_Size()
 {
     std::cout<< std::endl << "===================================stack_Size===================================" << std::endl;;
-    std::stack<int> stl_size;
-    ft::stack<int> ft_size;
+    std::stack<int> sizeStlCont;
+    ft::stack<int> sizeFtCont;
 
     for (int i = 0; i < 42; i++)
     {
-        stl_size.push(i);
-        ft_size.push(i);
+        sizeStlCont.push(i);
+        sizeFtCont.push(i);
     }
 
-    std::cout << ((showInfoStack(stl_size, ft_size) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfoStack(sizeStlCont, sizeFtCont) == true) ? "[✅]" : "[❌]");
 }
 
 void stack_top()
 {
     std::cout<< std::endl << "===================================stack_top===================================" << std::endl;;
 
-    std::stack<int> stl_top;
-    ft::stack<int> ft_top;
+    std::stack<int> TopStlCont;
+    ft::stack<int> TopFtCont;
 
     for (int i = 0; i < 42; i++)
     {
-        stl_top.push(i);
-        ft_top.push(i);
+        TopStlCont.push(i);
+        TopFtCont.push(i);
     }
 
-    std::cout << ((showInfo(stl_top.top(), ft_top.top()) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfo(TopStlCont.top(), TopFtCont.top()) == true) ? "[✅]" : "[❌]");
     
-    stl_top.pop();
-    ft_top.pop();
+    TopStlCont.pop();
+    TopFtCont.pop();
 
-    std::cout << ((showInfo(stl_top.top(), ft_top.top()) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfo(TopStlCont.top(), TopFtCont.top()) == true) ? "[✅]" : "[❌]");
 }
 
 void stack_Push()
 {
     std::cout<< std::endl << "===================================stack_Push===================================" << std::endl;;
-    std::stack<int> stl_size;
-    ft::stack<int> ft_size;
+    std::stack<int> sizeStlCont;
+    ft::stack<int> sizeFtCont;
 
     for (int i = 0; i < 42; i++)
     {
-        stl_size.push(i * 2);
-        ft_size.push(i * 2);
+        sizeStlCont.push(i * 2);
+        sizeFtCont.push(i * 2);
     }
 
-    std::cout << ((showInfoStack(stl_size, ft_size) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfoStack(sizeStlCont, sizeFtCont) == true) ? "[✅]" : "[❌]");
 
 }
 
@@ -87,98 +87,98 @@ void stack_Pop()
 {
     std::cout<< std::endl << "===================================stack_Pop===================================" << std::endl;;
     
-    std::stack<int> stl_pop;
-    ft::stack<int> ft_pop;
+    std::stack<int> PopStlCont;
+    ft::stack<int> PopFtCont;
 
     for (int i = 0; i < 42; i++)
     {
-        stl_pop.push(i);
-        ft_pop.push(i);
+        PopStlCont.push(i);
+        PopFtCont.push(i);
     }
 
-    std::cout << ((showInfoStack(stl_pop, ft_pop) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfoStack(PopStlCont, PopFtCont) == true) ? "[✅]" : "[❌]");
     
-    stl_pop.pop();
-    ft_pop.pop();
+    PopStlCont.pop();
+    PopFtCont.pop();
 
-    std::cout << ((showInfoStack(stl_pop, ft_pop) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showInfoStack(PopStlCont, PopFtCont) == true) ? "[✅]" : "[❌]");
 }
 
 void stack_operatorEqualTrue()
 {
     std::cout<< std::endl << "===================================operator== ===================================" << std::endl;;
     
-    std::stack<int> stl_pop_one;
-    std::stack<int> stl_pop_two;
-    ft::stack<int> ft_pop_one;
-    ft::stack<int> ft_pop_two;
+    std::stack<int> PopStlContFirst;
+    std::stack<int> PopStlContSecond;
+    ft::stack<int> PopFtContFirst;
+    ft::stack<int> PopFtContSecond;
 
     for (int i = 0; i < 42; i++)
     {
-        stl_pop_one.push(i);
-        stl_pop_two.push(i);
-        ft_pop_one.push(i);
-        ft_pop_two.push(i);
+        PopStlContFirst.push(i);
+        PopStlContSecond.push(i);
+        PopFtContFirst.push(i);
+        PopFtContSecond.push(i);
     }
 
-    showInfoStack(stl_pop_one, ft_pop_one);
-    showInfoStack(stl_pop_two, ft_pop_two);
+    showInfoStack(PopStlContFirst, PopFtContFirst);
+    showInfoStack(PopStlContSecond, PopFtContSecond);
     
-    std::cout << ((printBoolResult((stl_pop_one == stl_pop_two), (ft_pop_one == ft_pop_two)) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showResult((PopStlContFirst == PopStlContSecond), (PopFtContFirst == PopFtContSecond)) == true) ? "[✅]" : "[❌]");
 }
 
 void stackOperatorSmallerTrue()
 {
     std::cout<< std::endl << "===================================operator < False ===================================" << std::endl;;
     
-    std::stack<int> stl_pop_one;
-    std::stack<int> stl_pop_two;
-    ft::stack<int> ft_pop_one;
-    ft::stack<int> ft_pop_two;
+    std::stack<int> PopStlContFirst;
+    std::stack<int> PopStlContSecond;
+    ft::stack<int> PopFtContFirst;
+    ft::stack<int> PopFtContSecond;
 
     for (int i = 0; i < 42; i++)
     {
-        stl_pop_one.push(i);
-        ft_pop_one.push(i);
+        PopStlContFirst.push(i);
+        PopFtContFirst.push(i);
         if (i == 30)
         {
-            stl_pop_two.push(i * 2);
-            ft_pop_two.push(i * 2);
+            PopStlContSecond.push(i * 2);
+            PopFtContSecond.push(i * 2);
         }
         else
         {
-            stl_pop_two.push(i);
-            ft_pop_two.push(i);
+            PopStlContSecond.push(i);
+            PopFtContSecond.push(i);
         }
     }
 
-    showInfoStack(stl_pop_one, ft_pop_one);
-    showInfoStack(stl_pop_two, ft_pop_two);
+    showInfoStack(PopStlContFirst, PopFtContFirst);
+    showInfoStack(PopStlContSecond, PopFtContSecond);
     
-    std::cout << ((printBoolResult((stl_pop_one < stl_pop_two), (ft_pop_one < ft_pop_two)) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showResult((PopStlContFirst < PopStlContSecond), (PopFtContFirst < PopFtContSecond)) == true) ? "[✅]" : "[❌]");
 }
 
 void stackOperatorNotEqualFalse()
 {
     std::cout<< std::endl << "===================================operator != False ===================================" << std::endl;;
     
-    std::stack<int> stl_pop_one;
-    std::stack<int> stl_pop_two;
-    ft::stack<int> ft_pop_one;
-    ft::stack<int> ft_pop_two;
+    std::stack<int> PopStlContFirst;
+    std::stack<int> PopStlContSecond;
+    ft::stack<int> PopFtContFirst;
+    ft::stack<int> PopFtContSecond;
 
     for (int i = 0; i < 42; i++)
     {
-        stl_pop_one.push(i);
-        stl_pop_two.push(i);
-        ft_pop_one.push(i);
-        ft_pop_two.push(i);
+        PopStlContFirst.push(i);
+        PopStlContSecond.push(i);
+        PopFtContFirst.push(i);
+        PopFtContSecond.push(i);
     }
     
-    showInfoStack(stl_pop_one, ft_pop_one);
-    showInfoStack(stl_pop_two, ft_pop_two);
+    showInfoStack(PopStlContFirst, PopFtContFirst);
+    showInfoStack(PopStlContSecond, PopFtContSecond);
     
-    std::cout << ((printBoolResult((stl_pop_one != stl_pop_two), (ft_pop_one != ft_pop_two)) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showResult((PopStlContFirst != PopStlContSecond), (PopFtContFirst != PopFtContSecond)) == true) ? "[✅]" : "[❌]");
 
 }
 
@@ -186,22 +186,22 @@ void stackOperatorMoreTrue()
 {
     std::cout<< std::endl << "===================================operator > True ===================================" << std::endl;;
     
-    std::stack<int> stl_pop_one;
-    std::stack<int> stl_pop_two;
-    ft::stack<int> ft_pop_one;
-    ft::stack<int> ft_pop_two;
+    std::stack<int> PopStlContFirst;
+    std::stack<int> PopStlContSecond;
+    ft::stack<int> PopFtContFirst;
+    ft::stack<int> PopFtContSecond;
 
     for (int i = 0; i < 42; i++)
     {
-        stl_pop_one.push(i * 2);
-        stl_pop_two.push(i);
-        ft_pop_one.push(i * 2);
-        ft_pop_two.push(i);
+        PopStlContFirst.push(i * 2);
+        PopStlContSecond.push(i);
+        PopFtContFirst.push(i * 2);
+        PopFtContSecond.push(i);
     }
 
-    showInfoStack(stl_pop_one, ft_pop_one);
-    showInfoStack(stl_pop_two, ft_pop_two);
+    showInfoStack(PopStlContFirst, PopFtContFirst);
+    showInfoStack(PopStlContSecond, PopFtContSecond);
     
-    std::cout << ((printBoolResult((stl_pop_one > stl_pop_two), (ft_pop_one > ft_pop_two)) == true) ? "[OK]" : "[❌]");
+    std::cout << ((showResult((PopStlContFirst > PopStlContSecond), (PopFtContFirst > PopFtContSecond)) == true) ? "[✅]" : "[❌]");
 
 }

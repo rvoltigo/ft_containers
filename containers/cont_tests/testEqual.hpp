@@ -4,7 +4,7 @@
 # include <iostream>
 # include <string>
 
-bool printBoolResult(bool originalStl, bool myFt);
+bool showResult(bool originalStl, bool myFt);
 
 template <class T>
 std::string equal(const T& t1, const T& t2)

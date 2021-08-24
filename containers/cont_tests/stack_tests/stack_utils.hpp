@@ -1,7 +1,7 @@
 #ifndef STACK_UTILS_HPP
 #define STACK_UTILS_HPP
 
-#include "../test.hpp"
+#include "../testEqual.hpp"
 #include "../../stack.hpp"
 #include <stack>
 
