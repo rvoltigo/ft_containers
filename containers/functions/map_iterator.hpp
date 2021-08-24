@@ -4,6 +4,7 @@
 
 namespace ft
 {
+	//================Start map_iterator================
 	template <typename T, class Compare >
 	class map_iterator : ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
@@ -22,7 +23,7 @@ namespace ft
 			{
 			}
 
-			map_iterator(const map_iterator& bst_it): _node(bst_it._node), _last_node(bst_it._last_node), _comp()
+			map_iterator(const map_iterator& map_it): _node(map_it._node), _last_node(map_it._last_node), _comp()
 			{
 			}
 
@@ -30,24 +31,24 @@ namespace ft
 			{
 			}
 
-			map_iterator &operator=(const map_iterator& bst_it)
+			map_iterator &operator=(const map_iterator& map_it)
 			{
-				if (*this == bst_it)
+				if (*this == map_it)
 					return (*this);
-				this->_node = bst_it._node;
-				this->_last_node = bst_it._last_node;
-				this->_comp = bst_it._comp;
+				this->_node = map_it._node;
+				this->_last_node = map_it._last_node;
+				this->_comp = map_it._comp;
 				return (*this);
 			}
 
-			bool operator== (const map_iterator& bst_it)
+			bool operator== (const map_iterator& map_it)
 			{
-				return (this->_node == bst_it._node);
+				return (this->_node == map_it._node);
 			}
 
-			bool operator!= (const map_iterator& bst_it)
+			bool operator!= (const map_iterator& map_it)
 			{
-				return (this->_node != bst_it._node);
+				return (this->_node != map_it._node);
 			}
 
 			reference operator* () const
@@ -134,6 +135,7 @@ namespace ft
 			T *			_last_node;
 			Compare     _comp;
 	};
+	//================End map_iterator================
 }
 
 #endif

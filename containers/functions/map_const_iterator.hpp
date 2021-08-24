@@ -5,6 +5,7 @@
 
 namespace ft
 {
+	//================Start map_const_iterator================
 	template <typename T, class Compare >
 	class map_const_iterator : ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
@@ -139,6 +140,7 @@ namespace ft
 			T *         _last_node;
 			Compare     _comp;
 	};
+	//================End map_const_iterator================
 }
 
 #endif

@@ -50,23 +50,23 @@ namespace ft
                 this->ct.pop_back();
             }
 
-            template <class Tn, class ContainerN>
-            friend bool operator== (const ft::stack<Tn, ContainerN>& lhs, const ft::stack<Tn, ContainerN>& rhs);
+            template <class TF, class ContainerF>
+            friend bool operator== (const ft::stack<TF, ContainerF>& lhs, const ft::stack<TF, ContainerF>& rhs);
 
-            template <class Tn, class ContainerN>
-            friend bool operator!= (const ft::stack<Tn, ContainerN>& lhs, const ft::stack<Tn, ContainerN>& rhs);
+            template <class TF, class ContainerF>
+            friend bool operator!= (const ft::stack<TF, ContainerF>& lhs, const ft::stack<TF, ContainerF>& rhs);
 
-            template <class Tn, class ContainerN>
-            friend bool operator< (const ft::stack<Tn, ContainerN>& lhs, const ft::stack<Tn, ContainerN>& rhs);
+            template <class TF, class ContainerF>
+            friend bool operator< (const ft::stack<TF, ContainerF>& lhs, const ft::stack<TF, ContainerF>& rhs);
 
-            template <class Tn, class ContainerN>
-            friend bool operator<= (const ft::stack<Tn, ContainerN>& lhs, const ft::stack<Tn, ContainerN>& rhs);
+            template <class TF, class ContainerF>
+            friend bool operator<= (const ft::stack<TF, ContainerF>& lhs, const ft::stack<TF, ContainerF>& rhs);
 
-            template <class Tn, class ContainerN>
-            friend bool operator> (const ft::stack<Tn, ContainerN>& lhs, const ft::stack<Tn, ContainerN>& rhs);
+            template <class TF, class ContainerF>
+            friend bool operator> (const ft::stack<TF, ContainerF>& lhs, const ft::stack<TF, ContainerF>& rhs);
 
-            template <class Tn, class ContainerN>
-            friend bool operator>= (const ft::stack<Tn, ContainerN>& lhs, const ft::stack<Tn, ContainerN>& rhs);
+            template <class TF, class ContainerF>
+            friend bool operator>= (const ft::stack<TF, ContainerF>& lhs, const ft::stack<TF, ContainerF>& rhs);
         protected:
             container_type ct;
     };

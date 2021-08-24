@@ -66,12 +66,13 @@ namespace ft
     };
     //===================End Node===================
 
+	//===================End bidirectional_iterator_map===================
     template <class T, class Compare = ft::less<T>, class Node = ft::Node<T>,
               class Type_Alloc = std::allocator<T>, class Node_Alloc = std::allocator<Node> >
-    class Binary_search_tree
+    class bidirectional_iterator_map
     {
         public:
-            typedef Binary_search_tree          self;
+            typedef bidirectional_iterator_map          self;
             typedef self&                       self_reference;
             typedef T                                       value_type;
 			typedef Node                                    node_type;
@@ -81,13 +82,13 @@ namespace ft
 			typedef ft::map_const_iterator<Node, Compare>   const_iterator;
 			typedef size_t                                  size_type;
 
-            Binary_search_tree(const node_alloc& node_alloc_init = node_alloc()) : _node_alloc(node_alloc_init)
+            bidirectional_iterator_map(const node_alloc& node_alloc_init = node_alloc()) : _node_alloc(node_alloc_init)
             {
                 _last_node = _node_alloc.allocate(1);
                 _node_alloc.construct(_last_node, Node(_last_node, _last_node, _last_node));
             }
 
-            ~Binary_search_tree()
+            ~bidirectional_iterator_map()
             {
                 _node_alloc.destroy(_last_node);
                 _node_alloc.deallocate(_last_node, 1);
@@ -98,7 +99,7 @@ namespace ft
 
             ft::pair<iterator, bool> insertPair(value_type to_insert)
 			{
-				Node*   new_node = _node_alloc.allocate(1);
+				Node*   afterNode = _node_alloc.allocate(1);
 				Node*   prev_node = _last_node;
 				Node*   start_node = _last_node->parent;
 				bool    side = true;
@@ -119,35 +120,35 @@ namespace ft
 						start_node = start_node->left;
 					}
 				}
-				_node_alloc.construct(new_node, Node(to_insert, prev_node, _last_node, _last_node));
+				_node_alloc.construct(afterNode, Node(to_insert, prev_node, _last_node, _last_node));
 				
 				if (prev_node == _last_node)
-					_last_node->parent = new_node;
+					_last_node->parent = afterNode;
 				else if (side == true)
-					prev_node->right = new_node;
+					prev_node->right = afterNode;
 				else
-					prev_node->left = new_node;
+					prev_node->left = afterNode;
 				
-				_last_node->left = _map_while_loop(_last_node->parent);
-				_last_node->right = _BST_get_higher_node(_last_node->parent);
+				_last_node->left = _map_while_loop_left(_last_node->parent);
+				_last_node->right = _map_while_loop_right(_last_node->parent);
 				_last_node->value.first += 1;
-				return (ft::make_pair(iterator(new_node, _last_node), true));
+				return (ft::make_pair(iterator(afterNode, _last_node), true));
 			}
 
-            void removeByKey(value_type to_remove)
+            void removeByKey(value_type remove_key)
 			{
-                _removeByKey(_last_node->parent, to_remove);
+                _remove(_last_node->parent, remove_key);
             }
 
-            node_pointer searchByKey(value_type to_remove) const
+            node_pointer searchByKey(value_type remove_key) const
 			{
 				node_pointer node = _last_node->parent;
 
 				while (node != _last_node)
 				{
-					if (node->value.first == to_remove.first)
+					if (node->value.first == remove_key.first)
 						return (node);
-					if (node->value.first > to_remove.first)
+					if (node->value.first > remove_key.first)
 						node = node->left;
 					else
 						node = node->right;
@@ -171,113 +172,114 @@ namespace ft
             }
 			
         private:
-            node_pointer _map_while_loop(node_pointer arg)
+            node_pointer _map_while_loop_left(node_pointer arg)
 			{
 				while (arg->left != _last_node && arg != _last_node)
 					arg = arg->left;
 				return (arg);
 			}
-			node_pointer _BST_get_higher_node(node_pointer arg)
+			node_pointer _map_while_loop_right(node_pointer arg)
 			{
 				while (arg->right != _last_node && arg != _last_node)
 					arg = arg->right;
 				return (arg);
 			}
-			void _replaceNodeInParent(node_pointer node, node_pointer new_node)
+			void _replaceNodeInParent(node_pointer beforeNode, node_pointer afterNode)
 			{
-				if (node->parent != _last_node)
+				if (beforeNode->parent != _last_node)
 				{
-					if (_last_node->parent == node)
-						_last_node->parent = new_node;
+					if (_last_node->parent == beforeNode)
+						_last_node->parent = afterNode;
 
-					if (node == node->parent->left)
-						node->parent->left = new_node;
+					if (beforeNode == beforeNode->parent->left)
+						beforeNode->parent->left = afterNode;
 					else
-						node->parent->right = new_node;
+						beforeNode->parent->right = afterNode;
 				}
 				else
-					_last_node->parent = new_node;
+					_last_node->parent = afterNode;
 
-				_last_node->left = _map_while_loop(_last_node->parent);
-				_last_node->right = _BST_get_higher_node(_last_node->parent);
+				_last_node->left = _map_while_loop_left(_last_node->parent);
+				_last_node->right = _map_while_loop_right(_last_node->parent);
 				_last_node->value.first -= 1;
 				
-				new_node->parent = node->parent;
+				afterNode->parent = beforeNode->parent;
 				
-				_node_alloc.destroy(node);
-				_node_alloc.deallocate(node, 1);
+				_node_alloc.destroy(beforeNode);
+				_node_alloc.deallocate(beforeNode, 1);
 			}
 
-			void _replaceDoubleChildren(node_pointer& to_remove, node_pointer new_node)
+			void _doubleReplace(node_pointer& remove_key, node_pointer afterNode)
 			{
-				if (new_node->parent != _last_node && new_node->parent != to_remove)
-						new_node->parent->left = new_node->right;
+				if (afterNode->parent != _last_node && afterNode->parent != remove_key)
+						afterNode->parent->left = afterNode->right;
 				
-				new_node->parent = to_remove->parent;
+				afterNode->parent = remove_key->parent;
 
-				if (to_remove->left != new_node)
-					new_node->left = to_remove->left;
-				if (to_remove->right != new_node)
-					new_node->right = to_remove->right;
+				if (remove_key->left != afterNode)
+					afterNode->left = remove_key->left;
+				if (remove_key->right != afterNode)
+					afterNode->right = remove_key->right;
 
-				if (to_remove->parent != _last_node)
+				if (remove_key->parent != _last_node)
 				{
-					if (to_remove->parent->left == to_remove)
-						to_remove->parent->left = new_node;
-					else if (to_remove->parent->right == to_remove)
-						to_remove->parent->right = new_node;
+					if (remove_key->parent->left == remove_key)
+						remove_key->parent->left = afterNode;
+					else if (remove_key->parent->right == remove_key)
+						remove_key->parent->right = afterNode;
 				}
 				else
-					_last_node->parent = new_node;
+					_last_node->parent = afterNode;
 					
-				if (to_remove->left != _last_node && to_remove->left != new_node)
-					to_remove->left->parent = new_node;
-				if (to_remove->right != _last_node && to_remove->right != new_node)
-					to_remove->right->parent = new_node;
+				if (remove_key->left != _last_node && remove_key->left != afterNode)
+					remove_key->left->parent = afterNode;
+				if (remove_key->right != _last_node && remove_key->right != afterNode)
+					remove_key->right->parent = afterNode;
 
-				if (to_remove->parent != _last_node)
+				if (remove_key->parent != _last_node)
 				{
-					to_remove->left = _last_node;
-					to_remove->right = _last_node;
-					to_remove->parent = new_node;
+					remove_key->left = _last_node;
+					remove_key->right = _last_node;
+					remove_key->parent = afterNode;
 				}
 
-				_last_node->left = _map_while_loop(_last_node->parent);
-				_last_node->right = _BST_get_higher_node(_last_node->parent);
+				_last_node->left = _map_while_loop_left(_last_node->parent);
+				_last_node->right = _map_while_loop_right(_last_node->parent);
 				_last_node->value.first -= 1;
 
-				_node_alloc.destroy(to_remove);
-				_node_alloc.deallocate(to_remove, 1);
+				_node_alloc.destroy(remove_key);
+				_node_alloc.deallocate(remove_key, 1);
 			}
 
-			void _removeByKey(node_pointer node, value_type to_remove)
+			void _remove(node_pointer prev_node, value_type remove_key)
 			{
-				if (to_remove.first < node->value.first)
+				if (remove_key.first < prev_node->value.first)
 				{
-					_removeByKey(node->left, to_remove);
+					_remove(prev_node->left, remove_key);
 					return ;
 				}
 
-				if (to_remove.first > node->value.first)
+				if (remove_key.first > prev_node->value.first)
 				{
-					_removeByKey(node->right, to_remove);
+					_remove(prev_node->right, remove_key);
 					return ;
 				}
 
-				if (node->left != _last_node && node->right != _last_node)
+				if (prev_node->left != _last_node && prev_node->right != _last_node)
 				{
-					node_pointer successor = _map_while_loop(node->right);
-					_replaceDoubleChildren(node, successor);
+					node_pointer successor = _map_while_loop_left(prev_node->right);
+					_doubleReplace(prev_node, successor);
 					return ;
 				}
-				else if (node->left != _last_node)
-					_replaceNodeInParent(node, node->left);
-				else if (node->right != _last_node)
-					_replaceNodeInParent(node, node->right);
+				else if (prev_node->left != _last_node)
+					_replaceNodeInParent(prev_node, prev_node->left);
+				else if (prev_node->right != _last_node)
+					_replaceNodeInParent(prev_node, prev_node->right);
 				else
-					_replaceNodeInParent(node, _last_node);
+					_replaceNodeInParent(prev_node, _last_node);
 			}
     };
+	//===================End bidirectional_iterator_map===================
 }
 
 

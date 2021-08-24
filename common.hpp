@@ -4,7 +4,7 @@
 #include <string>
 
 #ifndef TESTED_NAMESPACE
-# define TESTED_NAMESPACE ft
+# define TESTED_NAMESPACE std
 #endif
 
 #define _pair TESTED_NAMESPACE::pair
@@ -22,7 +22,6 @@ template <typename T_MAP>
 void	printSize(T_MAP const &mp, bool print_content = 1)
 {
 	std::cout << "size: " << mp.size() << std::endl;
-	std::cout << "max_size: " << mp.max_size() << std::endl;
 	if (print_content)
 	{
 		typename T_MAP::const_iterator it = mp.begin(), ite = mp.end();
@@ -56,7 +55,7 @@ class foo {
 		foo(foo const &src, const bool verbose = false) : value(src.value), _verbose(verbose) { };
 		~foo(void) { if (this->_verbose) std::cout << "~foo::foo()" << std::endl; };
 		void m(void) { std::cout << "foo::m called [" << this->value << "]" << std::endl; };
-		void m(void) const { std::cout << "foo::m const called [" << this->value << "]" << std::endl; };
+		void m(void) const { std::cout << "foo::m called [" << this->value << "]" << std::endl; };
 		foo &operator=(value_type src) { this->value = src; return *this; };
 		foo &operator=(foo const &src) {
 			if (this->_verbose || src._verbose)
